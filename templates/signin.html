@@ -1,0 +1,82 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Inicio de sesión en patitas fitnes">
+    <meta name="keywords" content="bootstrap, Gimnasio, Mascotas, Patitas Fitness, aprendisaje, html"/>
+    <!--<meta name="author" content="">
+    <meta name="generator" content="Hugo 0.88.1"> -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon-sin-fondo.png' %}"> <!-- con esto ponemos un icono a la pagina-->
+		<title> Patitas Fitness Iniciar sesión </title>
+		<link rel="stylesheet" href="{% static 'scss/estilos.css' %}"/> 
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/signin.css' %}" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+    <main class="form-signin">
+      <form>
+        <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" >
+        <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
+          <label for="floatingInput">Usuario</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="********">
+          <label for="floatingPassword">Contraseña</label>
+        </div>
+
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recordar
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+        <br>
+        <br>
+        <a class="w-100 btn btn-lg btn-secondary" href="https://www.youtube.com/watch?v=4-UbHw8eDzM" role="button"> Registrarse
+        </a> 
+      </form>
+
+    </main>
+
+      <div class="container">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">lorem</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">####</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">####</a></li>
+          </ul>
+          <p class="text-center text-muted">&copy; 2022 Patitas Fitness</p>
+        </footer>
+    </div>
+
+  </body>
+</html>

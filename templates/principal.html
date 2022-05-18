@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Gustos y pasatiempos"/>
+		<meta name="keywords" content="bootstrap, pasatiempos, Gustos, html, personal, aprendisaje, html"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="img/perro.png"> <!-- con esto ponemos un icono a la pagina-->
+		<title> Gustos y Pasatiempos </title>
+		<link rel="stylesheet" href="scss/estilos.css"/>
+
+    <!-- Bootstrap CSS -->
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  
+  </head>
+  <body>
+
+    <div id="inicio"></div>
+
+    </div>
+    <!--barra de navegacion-->
+    <div class="container">
+      <br>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="index.html">Mi página</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contacto">Redes sociales</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled">descompuesta</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    <!-- aqui va el carrusel-->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="img/desayuno.jpeg" height="730rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h5>Desayunando como señoras</h5>
+            <p>Este dia no tuvimos clases y nos fuimos a desayunar como señoras.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="img/paco.jpeg" height="730rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h5>Mi pana</h5>
+            <p>Una foto de mi pana el Paco</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/imagen3.jpg" height="730rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>VIdeojuegos</h5>
+            <p>Con esta imagen quiero representar mi gusto por los videojuegos.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    
+
+    <!-- este es nuestro main-->
+    
+      
+      <br>
+      <br>
+      <!--primer articulo-->
+      <div id="Sobre-mi">
+        <article>
+
+          <div class="containeer text-center">
+            <p>
+            <h5>Esta página fue creada gracias a bootstrap, su proposito es hablar sobre mis gustos y pasatiempos</h5>
+            
+            </p>
+          </div>
+
+        </article>
+
+        <!-- esto es para otra cosa en el futuro
+        <aside>
+          
+          <p> 
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus aliquam 
+            aperiam quibusdam ab ullam laborum, alias autem ea odit deserunt totam, quaerat esse 
+            fugit est dolorum? Amet ad ratione velit.
+          </p>
+
+        </aside>
+      -->
+      </div>
+      <!--aqui van los collapse-->
+      <div class="container">
+        <p>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+            ¿Quién soy?
+          </a>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
+            ¿A qué me dedico?
+          </button>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Gustos 
+          </a>
+        </p>
+        <div class="collapse" id="collapse">
+          <div class="card card-body">
+            Mi nombre completo es Yaotzin Israel Pineda Pineda, tengo 20 años, mido 170 centimetros, cabello castaño
+            ojos cafes, uso lentes, y olvide mencionar que tengo el cabello largo.
+          </div>
+        </div>
+        <div class="collapse" id="collapse2">
+          <div class="card card-body">
+           Actualmente estudio la licenciatura en informática en la Facultad de Contaduria y Administración en 
+           la Universidad Nacional Autonoma de México (UNAM); Para el momento en el que se esta creando esta 
+           página estoy en mi sexto semestre de la carrera, ya poco nos falta para terminar.
+          </div>
+        </div>
+        <div class="collapse" id="collapse3">
+          <div class="card card-body">
+           Mis gustos son muy variados, pero en general sigo ciertos patrones de comportamiento cuando elijo o hago cosas
+           el más notorio es que todo lo que hago es muy minimalista con colores solidos y casi siempre usando colores obscuros
+           esto no lo hago solamente con mis creaciones, sino también con mi forma de vestir, en alimentos es muy facil, ya que 
+           me gusta casi todo, menos los mariscos y ciertas comidas que incluyen carne como uno de sus ingredientes principales,
+           mi comida favorita son los molletes, no puedo resistirme a ellos.
+          </div>
+        </div>
+      </div>
+
+          <!-- primera alerta-->
+        <br>
+        <br>
+        <div class="container-fluid">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> Asu maquina!</strong> ya casi terminas de visualizar toda mi pagina, espero que te hayas divertido.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+            <!--boton del primer modal-->
+          <div class="container">
+              <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Esto no es un virus, puedes darle sin miedo ;)
+            </button>
+          </div>
+
+          <br>
+          <br>
+          
+          <div class="container text-center">
+            <div id="GP">
+
+              <h1> <span class="badge rounded-pill bg-dark"> Gustos y Pasatiempos</span> </h1>
+
+            </div>
+
+          </div>
+
+          <br>
+          <br>
+
+      <!--aqui van las tarjetas-->
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/league-of-legends.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">league of legends</h5>
+                <p class="card-text">Este es uno de los videojuegos que actualmente juego, aunque su comunidad es muy toxica es muy entretenido
+                  lo puedes jugar solo, de manera competitiva, como arcade pero simepre es mejor jugarlo con amigos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/taekowndo.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Deportes</h5>
+                <p class="card-text">Desde que era un niño me gustaba practicar cualquier deporte, especialmente los de contacto
+                 el que he practicado por más tiempo es Tae Kown Do pero tambien he practicado Boxeo, Lima lama, Lucha grecoromana
+                 Hapkido, y alguna vez intenté hacer gimnasia pero no me salio como esperaba xD.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/haceker.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Estudios</h5>
+                <p class="card-text">Lo que más me gusta de la informatica, es la rama de ciber seguridad, de igual menera es a lo que 
+                  me gustaria dedicarme profesinalmente, actualmente lo estudio fuera de los horarios de clase con libros y formando parte 
+                  de clubs de escuelas como ESCOM, UPIICSA, ESIME y aveces presenciar las practicas que hace el club de nuestar escuela PUMAHACK .</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/cocinar.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Cocinar</h5>
+                <p class="card-text">Uno de mis pasatiempos favoritos es la cocina, durante el tiempo en pandemia aproveché para aprender 
+                  nuebas habilidades, una de ellas fue cocinar recetas más elaboradas como la reposteria y la alta cocina, 
+                  comence a hacer de todo y algun día me gustaria estudar como segunda carrera gastronomia para seguir con
+                  esta nueva pasión.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/drifting.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Manejar</h5>
+                <p class="card-text">Algo que me encanta hacer es manejar, me gusta toda la onda del Tunning y ojalá tuviera el dinero
+                  para comprar un carro super tuneado y gastarme el dinero en llantas y gasolina para poder practicar cosas como 
+                  el drifting y el off-road lastima que es un deporte muy caro :( .</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="img/koala.jpg" height="200rem" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Mimir  <span class="badge bg-secondary">¡ LO MEJOR !</span></h5>
+                <p class="card-text">Sinceramente este gusto lo tenemos todos, a aquien no le gusta dormir, descansar plenamente 
+                  en tu cama o en un lugar tranquilo depués de un largo día de trabajo, o simplemente por mero gusto
+                  dormir es de esas cosa que cuando lo haces te liberan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+      <!-- contenido del primer modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">AAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <a href="https://www.youtube.com/watch?v=DMawWBwHnBU"> <button type="button" class="btn btn-primary position-relative">
+                Picale
+                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+                </button>
+              </a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar pero en azul</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- contenido del segundo modal -->
+       <div class="modal fade" id="segundoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">¡Espera! no puedes irte sin antes ver esto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <a href="https://www.youtube.com/watch?v=-Zn75eMkaoE"> <button type="button" class="btn btn-outline-primary"><img src="img/mono.png" height="30rem" width="30rem" alt="..."></button>
+              </a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar pero en azul (otra vez xD)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+        <!--pruebas-->
+
+        <!--fin de las pruebas-->
+
+
+    <footer>
+
+      <div class="container">
+        
+        <div id="contacto">
+          <div class="row">
+            <div class="col">
+              <h5>Redes sociales</h5>
+              <p>
+                puedes buscarme en las siguientes redes sociales.
+              </p>
+              <br>
+                <a href="https://www.facebook.com/yaotzin.pinedapineda"> <img src="img/facebook.png" width="30rem" height="30rem" alt="..."> </a>
+                <br>
+                <br>
+                <a href="https://www.instagram.com/yaotzin_israel/"> <img src="img/instagram.png" width="30rem" height="30rem" alt="..."></a>
+                <br>
+                <br>
+                <a href="https://open.spotify.com/playlist/2kbnGm9KmVCXRYxvoXfhBc"> <img src="img/spotify.png" width="30rem" height="30rem" alt="..."></a>
+                <br>
+                <br>
+
+            </div>
+            <div class="col text-center">
+              <h5>Extras</h5>
+              <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#segundoModal">
+              Diviertete
+            </button>
+          </div>
+
+        </div>
+
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#inicio">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="#Sobre-mi">Sobre mi</a></li>
+            <li class="breadcrumb-item"><a href="#GP">Gustos y Pasatiempos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+          </ol>
+        </nav>
+
+      </div>
+
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js" ></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Inicio de sesión en patitas fitnes">
+    <meta name="keywords" content="bootstrap, Gimnasio, Mascotas, Patitas Fitness, aprendisaje, html" />
+    <!--<meta name="author" content="">
+        <meta name="generator" content="Hugo 0.88.1"> -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon-sin-fondo.png' %}">
+    
+    <!-- con esto ponemos un icono a la pagina-->
+    <title> Patitas Fitness Registrarse</title>
+    <link rel="stylesheet" href="{% static 'assets/scss/estilos.css' %}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    <link href="{% static 'assets/css/login.css' %}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+
+    {% if logeado == False %}
+  
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Rayos!</strong> Correo electrónico registrado anteriormente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    {% endif %}
+
+    <main class="form-login">
+        <!-- Inicio del formulario-->
+
+        <form action="/insertar/" method="GET"> {% csrf_token %}
+            <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187">
+
+            <div class="form-floating">
+                <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="NOMBRE" required>
+                <label for="floatingInput">Nombre</label>
+
+                <div class="invalid-feedback">
+                    ¿Cómo te llamas?
+                </div>
+
+                <div class="separacion"></div>
+
+               <div class="form-floating">
+                    <input type="text" name="apellido" class="form-control" id="floatingInput" placeholder="Apellidos" required>
+                    <label for="floatingInput">Apellido</label>
+                </div>
+
+                <div class="separacion"></div>
+
+                <div class="form-floating">
+                    <input type="email" name="correo" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com" required>
+                    <label for="floatingInput">Correo electrónico</label>
+                </div>
+
+                <div class="separacion"></div>
+
+                <div class="form-floating">
+                    <input type="password" name="contrasenia" class="form-control" id="floatingPassword" placeholder="********" required>
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+                <div class="separacion"></div>
+
+                <!--Seleccion de la fecha de nacimiento dia-->
+
+                <div class="encabezado">
+                    <h6 float="left">Fecha de nacimiento:</h6>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select" name = "dia" required>
+                            <option value="1" selected="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                    </div>
+                    <!--Seleccion de la fecha de nacimiento mes-->
+                    <div class="col">
+                        <select class="form-select" name = "mes" required>
+                            <option value="01" selected="1">ene</option>
+                            <option value="02">feb</option>
+                            <option value="03">mar</option>
+                            <option value="04">abr</option>
+                            <option value="05">may</option>
+                            <option value="06">jun</option>
+                            <option value="07">jul</option>
+                            <option value="08">ago</option>
+                            <option value="09">sep</option>
+                            <option value="10">oct</option>
+                            <option value="11">nov</option>
+                            <option value="12">dic</option>
+                        </select>
+                    </div>
+                    <!--Seleccion de la fecha de nacimiento año-->
+                    <div class="col">
+                        <select class="form-select" name = "anio" required>
+                            <option value="2022" selected="1">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                            <option value="1983">1983</option>
+                            <option value="1982">1982</option>
+                            <option value="1981">1981</option>
+                            <option value="1980">1980</option>
+                            <option value="1979">1979</option>
+                            <option value="1978">1978</option>
+                            <option value="1977">1977</option>
+                            <option value="1976">1976</option>
+                            <option value="1975">1975</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="separacion"></div>
+                <div class="separacion"></div>
+
+
+
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                    Acepto los términos y condiciones
+                    </label>
+                        <div class="invalid-feedback">
+                            Debes aceptar los términos y condiciones.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
+                
+                <!-- <input type="submit" value="Registrar"> -->
+
+                <div class="separacion"></div>
+
+                <p class="text-center" style="margin-bottom:0rem">¿Ya tienes una cuenta? Inicia sesión</p>
+                <a class="w-100 btn btn-lg btn-secondary" href="https://www.youtube.com/watch?v=4-UbHw8eDzM" role="button">Iniciar sesión</a>
+
+        </form>
+
+    </main>
+
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Promociones</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Catálogo</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ofertas</a></li>
+            </ul>
+            <p class="text-center text-muted">&copy; 2022 Patitas Fitness</p>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
