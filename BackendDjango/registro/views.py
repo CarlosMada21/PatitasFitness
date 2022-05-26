@@ -1,3 +1,4 @@
+from concurrent.futures.process import _ExceptionWithTraceback
 from xmlrpc.client import Boolean
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -8,11 +9,32 @@ from registro.models import usuario
 def login(request):
     
     #cargador = get_template('login.html')
-    #plantillaLogin=cargador.render()    
+    #plantillaLogin=cargador.render()
     return render(request, "login.html")
 
 def signin(request):
+    
     return render(request, "signin.html")
+
+def buscar(request):
+    usuario_permitido=False
+    logeado=False
+    mensaje=""
+    email=request.GET['correo']
+    
+    try:
+        usr = usuario.objects.get(email=email)
+        
+        if((usr.password)==request.GET["contrasenia"]):
+            logeado = True
+            return render(request, "index.html", {"logeado": logeado, "nombre":usr.nombre})
+        else:
+            mensajeError="Contraseña incorrecta, inténtalo de nuevo."
+            return render(request, "signin.html", {"usuario_permitido":usuario_permitido, "mensaje":mensajeError})
+        
+    except Exception as e:
+        mensajeError="Parece que aún no tienes una cuenta con este correo electrónico."
+        return render(request, "signin.html", {"usuario_permitido":usuario_permitido, "mensaje":mensajeError})
 
 def insertar(request):
 
@@ -34,7 +56,6 @@ def insertar(request):
         return render(request, "index.html", {"insertado":insertado, "logeado": logeado, "nombre":usr.nombre})
 
     except Exception as e:
-        print(e)
         insertado=False
         return render(request, "login.html", {"insertado":insertado})
 

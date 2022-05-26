@@ -24,4 +24,5 @@ urlpatterns = [
     path('signin/', signin),
     path('insertar/', insertar),
     path('inicio/', inicio),
+    path('buscar/', buscar)
 ]

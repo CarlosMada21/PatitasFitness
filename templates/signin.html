@@ -38,17 +38,27 @@
   </head>
   <body class="text-center">
     
+    {% if usuario_permitido == False %}
+  
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Ups!</strong> {{ mensaje }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    {% endif %}
+
     <main class="form-signin">
-      <form>
+      <form action="/buscar/" method="GET"> {% csrf_token %}         
         <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" >
         <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
-          <label for="floatingInput">Usuario</label>
+          <input type="email" name="correo" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
+          
+          <label for="floatingInput">Correo electrónico</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="********">
+          <input type="password" name="contrasenia" class="form-control" id="floatingPassword" placeholder="********">
           <label for="floatingPassword">Contraseña</label>
         </div>
 
