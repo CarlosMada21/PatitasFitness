@@ -14,42 +14,29 @@ def login(request):
 def signin(request):
     return render(request, "signin.html")
 
-def buscar(request):
-    mensaje="Usuario buscado: %r" %request.GET["nombre"]
-
-    return HttpResponse(mensaje)
-
 def insertar(request):
 
+    insertado=False
     logeado=False
 
     usr = usuario(email = request.GET["correo"], 
         password = request.GET["contrasenia"],
         nombre = request.GET["nombre"],
         apellido = request.GET["apellido"],
-        #telefono = request.GET["telefono"],
+        telefono = request.GET["telefono"],
         fecha_nac = request.GET["anio"] + "-" + request.GET["mes"] + "-" + request.GET["dia"]
     )
 
     try:
         usr.save()
+        insertado=True
         logeado=True
-        return render(request, "index.html", {"logeado":logeado})
+        return render(request, "index.html", {"insertado":insertado, "logeado": logeado, "nombre":usr.nombre})
 
     except Exception as e:
-        logeado=False
-        return render(request, "login.html", {"logeado":logeado})
-
-
-    
-
-
-def contacto(request):
-
-    if request.method == "POST":
-        return render(request, "perate.html")
-
-    return render(request, "login.html")
+        print(e)
+        insertado=False
+        return render(request, "login.html", {"insertado":insertado})
 
 def inicio(request):
     return render(request, "index.html")

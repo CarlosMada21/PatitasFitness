@@ -48,7 +48,7 @@
 <body class="text-center">
 
 
-    {% if logeado == False %}
+    {% if insertado == False %}
   
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>¡Rayos!</strong> Correo electrónico registrado anteriormente.
@@ -61,7 +61,7 @@
         <!-- Inicio del formulario-->
 
         <form action="/insertar/" method="GET"> {% csrf_token %}
-            <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187">
+            <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" link="{% static 'assets/index.html' %}">
 
             <div class="form-floating">
                 <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="NOMBRE" required>
@@ -80,6 +80,13 @@
 
                 <div class="separacion"></div>
 
+                <div class="form-floating">
+                    <input type="text" name="telefono" class="form-control" id="floatingInput" placeholder="telefono" required>
+                    <label for="floatingInput">Teléfono</label>
+                </div>
+
+                <div class="separacion"></div>
+                
                 <div class="form-floating">
                     <input type="email" name="correo" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com" required>
                     <label for="floatingInput">Correo electrónico</label>
