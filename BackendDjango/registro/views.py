@@ -60,4 +60,5 @@ def insertar(request):
         return render(request, "login.html", {"insertado":insertado})
 
 def inicio(request):
-    return render(request, "index.html")
+    logeado=False
+    return render(request, "index.html", {"logeado": logeado})
