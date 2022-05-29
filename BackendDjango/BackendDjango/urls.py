@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signin/', views.signin, name ="signin"),
     path('insertar/', insertar),
-    path('', inicio),
+    path('', inicio, name="inicio"),
     path('buscar/', buscar),
     path('registro/', include('registro.urls'))
 ]

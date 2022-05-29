@@ -1,27 +1,6 @@
-<!doctype html>
-
+{% extends "cabecera.html" %}
 {% load static %}
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Patitas fitnes">
-    <meta name="keywords" content="bootstrap, Gimnasio, Mascotas, Patitas Fitness, aprendisaje, html"/>
-    <!--<meta name="author" content="">
-    <meta name="generator" content="Hugo 0.88.1"> -->
-    <link rel="shortcut icon" href="{% static 'assets/img/logo-sin-fondo.png' %}"> <!-- con esto ponemos un icono a la pagina-->
-		<title>Patitas Fitness</title>
-		<link rel="stylesheet" href="{% static 'scss/estilos.css' %}"/> 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'assets/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
-    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
-  </head>
-
-  <body>
-
+{% block content %}
     {% if insertado %}
   
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -31,72 +10,6 @@
       
 
     {% endif %}
-        <!-- aqui es la bara de navegacion-->
-        <div id="inicio"></div>
-        <nav class="navbar navbar-expand-md navbar-dark mb-4 nav">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#inicio"><img src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="icono-pagina" width="87" height="74"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#conocenos">¿Quienes somos?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#ubicacion">Ubicación</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#servicios">Nuestros Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#inscripciones">Inscripciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Tienda</a>
-                    </li>
-                    </ul>
-    
-                    {% if logeado == False %}
-                    
-                      <div class="d-flex">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                          <li class="nav-item">
-                          <a type="button" class="nav-link active" aria-current="page" href="{% url 'signin' %}">Iniciar Sesión</a>
-                          </li>
-                          <li class="nav-item" action="/login/">
-                              <a type="button" action="/login/" class="btn btn-outline-warning" href="{% url 'registro' %}">Regístrate</a>
-                          </li>
-                        </ul>
-                      </div>
-
-                    {% else %}
-                    
-                      <div class="d-flex">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item">
-                            <img src="{% static 'assets/img/user.png' %}" alt="" width="40" height="40" >
-                            <a style="color: white">{{nombre}}</a>
-                            </li>
-                            <div class="dropdown">
-                              <img src="{% static 'assets/img/configuracion.png' %}" alt="" width="43" height="43" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle">
-                              <a style="color: white">Configuración</a>
-                              <div class="dropdown-menu ">
-                                <a class="dropdown-item" href="#">Detalles de cuenta</a>
-                                <a class="dropdown-item" href="#">Configuración</a>
-                                <a class="dropdown-item" style="color: red" href="#">Cerrar sesion</a>
-                              </div>
-                            </div>
-                          </ul>
-                      </div>
-
-                    {% endif %}
-
-
-                </div>
-            </div>
-        </nav>
     
     <!-- aqui empieza el carrusel-->
 
@@ -221,4 +134,4 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="{% static 'assets/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
-  </body>
+{% endblock %}
