@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from registro.usuario import Usuario
+from datetime import date
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,7 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'registro.context_processors.globales',
+                'registro.context_processors.global_usuario',
+                'registro.context_processors.global_login',
             ],
         },
     },
@@ -131,4 +133,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USUARIO = Usuario("", "", "", "", False, False, "")
+USUARIO = Usuario("", "", "", "", False, False, "", date(1, 1, 1))
+LOGIN = False

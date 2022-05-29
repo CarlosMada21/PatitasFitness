@@ -1,21 +1,28 @@
+import email
+from sqlalchemy import DATE
+from datetime import date
+
+
 class Usuario:
     
     nombre=""
     telefono=""
-    domicilio=""
-    contrasenia=""
+    email=""
+    password=""
     mensualidad=False
     inscripcion=False
     apellido=""
+    fecha_nac = date(1, 1, 1)
         
-    def __init__(self, nombre, telefono, domicilio, contrasenia, mensualidad, inscripcion, apellido):
+    def __init__(self, nombre, telefono, email, password, mensualidad, inscripcion, apellido, fecha_nac):
             
         self.nombre = nombre
         self.telefono = telefono
-        self.domicilio = domicilio
-        self.contrasenia = contrasenia
+        self.email = email
+        self.password = password
         self.apellido = apellido
         self.inscripcion = inscripcion
         self.mensualidad = mensualidad
+        self.fecha_nac = fecha_nac
     
     
