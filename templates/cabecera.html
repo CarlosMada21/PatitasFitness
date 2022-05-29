@@ -25,7 +25,9 @@
     <div id="inicio"></div>
     <nav class="navbar navbar-expand-md navbar-dark mb-4 nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#inicio"><img src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="icono-pagina" width="87" height="74"></a>
+            <a class="navbar-brand" href="{% url 'inicio' %}">
+                <img src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="icono-pagina" width="87" height="74">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

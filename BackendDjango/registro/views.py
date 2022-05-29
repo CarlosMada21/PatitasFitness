@@ -61,7 +61,7 @@ def insertar(request):
         usr.save()
         insertado=True
         logeado=True
-        return render(request, "index.html", {"insertado":insertado, "logeado": logeado, "nombre":usr.nombre})
+        return render(request, "index.html", {"insertado":insertado, "logeado": logeado, "nombre":usr.nombre, "usuario": usr})
 
     except Exception as e:
         if type(e) == IntegrityError:

@@ -61,7 +61,11 @@
         <!-- Inicio del formulario-->
 
         <form action="/insertar/" method="GET"> {% csrf_token %}
-            <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" link="{% static 'assets/index.html' %}">
+            
+            <a href="{% url 'inicio' %}">
+                <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" link="{% static 'assets/index.html' %}">
+            </a>
+                
 
             <div class="form-floating">
                 <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="NOMBRE" required>
@@ -238,8 +242,9 @@
                 <div class="separacion"></div>
 
                 <p class="text-center" style="margin-bottom:0rem">¿Ya tienes una cuenta? Inicia sesión</p>
-                <a class="w-100 btn btn-lg btn-secondary" href="https://www.youtube.com/watch?v=4-UbHw8eDzM" role="button">Iniciar sesión</a>
-
+                <a class="w-100 btn btn-lg btn-secondary" href="{% url 'signin' %}" role="button">Iniciar sesión</a>
+                
+                
         </form>
 
     </main>

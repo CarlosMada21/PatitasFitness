@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATICFILES_DIRS=['C:/Users/52556/OneDrive/Documentos/InfoVI/ProyectoFinal/PatitasFitness/templates']
+STATICFILES_DIRS=['/home/cyntia/Documentos/6toSemestre/Info/MadaPatitas/PatitasFitness/templates']
 
 # Application definition
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'BackendDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/52556/OneDrive/Documentos/InfoVI/ProyectoFinal/PatitasFitness/templates'], #Ruta de carpeta donde están los html que usaremos
+        'DIRS': ['/home/cyntia/Documentos/6toSemestre/Info/MadaPatitas/PatitasFitness/templates'], #Ruta de carpeta donde están los html que usaremos
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'patitas_fitness',
         'USER': 'postgres',
-        'PASSWORD': '$#Cracklos10#$',
+        'PASSWORD': 'prueba',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '5432',
         'CHARSET': 'UTF8',
