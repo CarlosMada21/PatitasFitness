@@ -71,15 +71,26 @@
                         <img src="{% static 'assets/img/user.png' %}" alt="" width="40" height="40" >
                         <a style="color: white">{{nombre}}</a>
                         </li>
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <img src="{% static 'assets/img/configuracion.png' %}" alt="" width="43" height="43" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle">
                             <a style="color: white">Configuración</a>
                             <div class="dropdown-menu ">
-                            <a class="dropdown-item" href="#">Detalles de cuenta</a>
-                            <a class="dropdown-item" href="#">Configuración</a>
-                            <a class="dropdown-item" style="color: red" href="#">Cerrar sesion</a>
+                                <a class="dropdown-item" href="#">Detalles de cuenta</a>
+                                <a class="dropdown-item" href="#">Configuración</a>
+                                <a class="dropdown-item" style="color: red" href="#">Cerrar sesion</a>
                             </div>
-                        </div>
+                        </div> -->
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Dropdown button
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
                         </ul>
                     </div>
 
