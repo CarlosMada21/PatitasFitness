@@ -15,14 +15,15 @@ Including another URLconf
 """
 #from cgitb import html
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from registro.views import *
+from registro import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login),
-    path('signin/', signin),
+    path('signin/', views.signin, name ="signin"),
     path('insertar/', insertar),
-    path('inicio/', inicio),
-    path('buscar/', buscar)
+    path('', inicio),
+    path('buscar/', buscar),
+    path('registro/', include('registro.urls'))
 ]

@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Context
 from registro.models import usuario
+from django.shortcuts import redirect
+from django.db.utils import IntegrityError
 #from django.template.loader import get_template
 
 def login(request):
@@ -16,6 +18,9 @@ def signin(request):
     
     return render(request, "signin.html")
 
+def redireccionar_login(request):
+    return redirect(login)
+
 def buscar(request):
     usuario_permitido=False
     logeado=False
@@ -27,12 +32,15 @@ def buscar(request):
         
         if((usr.password)==request.GET["contrasenia"]):
             logeado = True
+            
             return render(request, "index.html", {"logeado": logeado, "nombre":usr.nombre})
         else:
             mensajeError="Contraseña incorrecta, inténtalo de nuevo."
             return render(request, "signin.html", {"usuario_permitido":usuario_permitido, "mensaje":mensajeError})
         
-    except Exception as e:
+    except usuario.DoesNotExist as e:
+        #print(type(e))
+        #print(e)
         mensajeError="Parece que aún no tienes una cuenta con este correo electrónico."
         return render(request, "signin.html", {"usuario_permitido":usuario_permitido, "mensaje":mensajeError})
 
@@ -56,9 +64,16 @@ def insertar(request):
         return render(request, "index.html", {"insertado":insertado, "logeado": logeado, "nombre":usr.nombre})
 
     except Exception as e:
-        insertado=False
-        return render(request, "login.html", {"insertado":insertado})
-
+        if type(e) == IntegrityError:
+            insertado=False
+            #print(type(e))
+            #print(e)
+            return render(request, "login.html", {"insertado":insertado})
+        else:
+            print(type(e))
+            print(e)
+            return render(request, "index.html")
+            
 def inicio(request):
     logeado=False
     return render(request, "index.html", {"logeado": logeado})

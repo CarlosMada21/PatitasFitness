@@ -59,13 +59,14 @@
                     </ul>
     
                     {% if logeado == False %}
+                    
                       <div class="d-flex">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                           <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Iniciar Sesión</a>
+                          <a type="button" class="nav-link active" aria-current="page" href="{% url 'signin' %}">Iniciar Sesión</a>
                           </li>
                           <li class="nav-item" action="/login/">
-                              <button type="button" action="/login/" class="btn btn-outline-warning">Registrate</button>
+                              <a type="button" action="/login/" class="btn btn-outline-warning" href="{% url 'registro' %}">Regístrate</a>
                           </li>
                         </ul>
                       </div>
@@ -76,11 +77,11 @@
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
                             <img src="{% static 'assets/img/user.png' %}" alt="" width="40" height="40" >
-                            <a style="color: white"> {{nombre}}</a>
+                            <a style="color: white">{{nombre}}</a>
                             </li>
                             <div class="dropdown">
                               <img src="{% static 'assets/img/configuracion.png' %}" alt="" width="43" height="43" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle">
-                              <a style="color: white">  Configuración  </a>
+                              <a style="color: white">Configuración</a>
                               <div class="dropdown-menu ">
                                 <a class="dropdown-item" href="#">Detalles de cuenta</a>
                                 <a class="dropdown-item" href="#">Configuración</a>
@@ -90,7 +91,7 @@
                           </ul>
                       </div>
 
-                      {% endif %}
+                    {% endif %}
 
 
                 </div>
