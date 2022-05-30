@@ -135,6 +135,8 @@ def eliminar(request):
             mensaje="Ha ocurrido un error inesperado"
             return render(request, "configuracion.html", {"eliminado": eliminado, "mensaje":mensaje})
         
+def catalogo(request):
+    return render(request, "catalogo.html")
 #Función para reiniciar variables globales
 def reset_globals():
     settings.LOGIN = False

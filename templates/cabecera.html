@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <!-- <link href="assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
         
         <!-- Custom styles for this template -->
@@ -63,7 +66,7 @@
                     <a class="nav-link active" aria-current="page" href="#inscripciones">Inscripciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tienda</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'catalogo' %}">Catálogo</a>
                 </li>
                 </ul>
 

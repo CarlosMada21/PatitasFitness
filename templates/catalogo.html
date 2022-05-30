@@ -1,0 +1,66 @@
+{% extends "cabecera.html" %}
+{% load static %}
+{% block content %}
+
+<main class="contenedor">
+
+    <div class="calendario">
+
+
+
+        <h3>
+            <i class="fa-solid fa-dumbbell"></i> Productos
+        </h3>
+
+        <div class="dia">
+            <p>Proteina de suero de leche </p>
+            <p>costo: $500</p>
+
+            <img src="{% static 'assets/img/proteina.png' %}" alt="" width="350" height="400">
+            
+        </div>
+        
+        <div class="dia">
+            <p>creatina</p>
+            <p>costo: $300</p>
+
+            <img src="{% static 'assets/img/creatina.png' %}" alt="" width="350" height="400">
+        </div>
+        <div class="dia">
+            <p>testosterona</p>
+            <p>costo: $500</p>
+
+            <img src="{% static 'assets/img/testoterona.png' %}" alt="" width="350" height="400">
+        </div>
+        <h3>
+            <i class="fa-solid fa-dumbbell"></i> Productos para la mascota 
+        </h3>
+
+        <div class="dia">
+            <p>correas</p>
+            <p>costo: $50</p>
+
+            <img src="{% static 'assets/img/correa.png' %}" alt="correa de perro " width="350" height="400">
+        </div>
+        <div class="dia">
+            <p>Croquetas </p>
+            <p>costo: $500</p>
+
+            <img src="{% static 'assets/img/croqueta.png' %}" alt="" width="350" height="400">
+            
+        </div>
+        <div class="dia">
+            <p>Juguetes </p>
+            <p>costo: $50</p>
+
+            <img src="{% static 'assets/img/juguete.png' %}" width="350" height="400" alt="">
+        </div>
+
+
+
+        </section>
+
+
+</main>
+
+{% endblock %}
