@@ -39,6 +39,11 @@ body {
     border-width: 1px 0;
 }
 
+.separacion_horizontal {
+    width: 0.5rem;
+    border-width: 1px 0;
+}
+
 .separacion-seccion {
     height: 1.5rem;
     border-width: 1px 0;

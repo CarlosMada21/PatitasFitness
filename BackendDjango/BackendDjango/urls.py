@@ -25,5 +25,6 @@ urlpatterns = [
     path('insertar/', insertar),
     path('', inicio, name="inicio"),
     path('buscar/', buscar),
-    path('registro/', include('registro.urls'))
+    path('registro/', include('registro.urls')),
+    path('logout/', views.logout, name = "logout"),
 ]

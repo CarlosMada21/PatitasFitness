@@ -68,7 +68,7 @@
                 
 
             <div class="form-floating">
-                <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="NOMBRE" required>
+                <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="NOMBRE" pattern = "[A-Za-z]{1,30}" required>
                 <label for="floatingInput">Nombre</label>
 
                 <div class="invalid-feedback">
@@ -78,14 +78,14 @@
                 <div class="separacion"></div>
 
                <div class="form-floating">
-                    <input type="text" name="apellido" class="form-control" id="floatingInput" placeholder="Apellidos" required>
+                    <input type="text" name="apellido" class="form-control" id="floatingInput" placeholder="Apellidos" pattern = "[A-Za-z]{1,30}" required>
                     <label for="floatingInput">Apellido</label>
                 </div>
 
                 <div class="separacion"></div>
 
                 <div class="form-floating">
-                    <input type="text" name="telefono" class="form-control" id="floatingInput" placeholder="telefono" required>
+                    <input type="tel" name="telefono" class="form-control" id="floatingInput" placeholder="0987654321"  pattern = "[0-9]{10}" required>
                     <label for="floatingInput">Teléfono</label>
                 </div>
 

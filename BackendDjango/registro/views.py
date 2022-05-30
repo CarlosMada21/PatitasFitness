@@ -6,6 +6,7 @@ from django.template import Context
 from registro.models import usuario
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
+from datetime import date
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
 # from BackendDjango import settings
@@ -100,4 +101,14 @@ def insertar(request):
             return render(request, "index.html")
             
 def inicio(request):
+    return render(request, "index.html")
+
+def logout(request):
+    settings.LOGIN = False
+    settings.USUARIO.nombre = ""
+    settings.USUARIO.apellido = ""
+    settings.USUARIO.password = ""
+    settings.USUARIO.email = ""
+    settings.USUARIO.telefono = ""
+    settings.USUARIO.fecha_nac = date(1, 1, 1)
     return render(request, "index.html")
