@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Patitas Citas</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+	<link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}" />
+  </head>
+  <body>
+   
+	<div id="inicio"></div>
+    <nav class="navbar navbar-expand-md navbar-dark mb-4 nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'inicio' %}">
+                <img src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="icono-pagina" width="87" height="74">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#conocenos">¿Quienes somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#ubicacion">Ubicación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#servicios">Nuestros Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#inscripciones">Inscripciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Tienda</a>
+                </li>
+                </ul>
+
+                {% if LOGIN == False %}
+
+                    <div class="d-flex">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                        <a type="button" class="nav-link active" aria-current="page" href="{% url 'signin' %}">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item" action="/login/">
+                            <a type="button" action="/login/" class="btn btn-outline-warning" href="{% url 'registro' %}">Regístrate</a>
+                        </li>
+                    </ul>
+                    </div>
+
+                {% else %}
+
+                    <div class="d-flex">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <img src="{% static 'assets/img/user.png' %}" alt="" width="40" height="40" >
+                                <a style="color: white"> {{USUARIO.nombre}}</a>
+                            </li>
+                            <li>
+                                <p style= "color: #0F2C67" >\t\t</p>
+                            </li>
+                            <div class="dropdown">
+                                <img src="{% static 'assets/img/configuracion.png' %}" alt="" width="43" height="43" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle">
+                                <a class="dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle" style="color: white" href="#">  Configuración  </a>
+                                <div class="dropdown-menu ">
+                                    <a class="dropdown-item" href="#">Detalles de cuenta</a>
+                                    <a class="dropdown-item" href="{% url 'configuracion' %}">Configuración</a>
+                                    <a class="dropdown-item" style="color: red" href="{% url 'logout' %}">Cerrar sesion</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <!--Aqui empieza el formulario-->
+    <!-- <div class="container">
+		<div class="row align-items-start">
+		<div class="col">
+		{% if usuario_permitido == False %}
+
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong>Â¡Ups!</strong> {{ mensaje }}
+		  <button
+			type="button"
+			class="btn-close"
+			data-bs-dismiss="alert"
+			aria-label="Close"
+		  ></button>
+		</div>
+  
+		{% endif %}
+  
+		<main class="form-signin">
+		  <form action="/buscar/" method="GET">
+			{% csrf_token %}
+			
+			<h1 class="h3 mb-3 fw-normal">Datos de contacto</h1>
+  
+			<div class="form-floating">
+			  <input
+				type="nomnre"
+				name="mombre"
+				class="form-control"
+				id="floatingInput"
+				placeholder="Juan Perez"
+			  />
+  
+			  <label for="floatingInput">Nombre Completo</label>
+			</div>
+			<div class="form-floating">
+			  <input
+				pattern="[0-9]{10}"
+				type="tel"
+				name="name"
+				class="form-control"
+				id="floatingPassword"
+				placeholder="5588446699"
+			  />
+			  <label for="floatingPassword">Celular</label>
+			</div>
+			
+			<div class="form-floating">
+				<input
+				  type="email"
+				  name="correo"
+				  class="form-control"
+				  id="floatingPassword"
+				  placeholder="example@gmail.com"
+				/>
+				<label for="floatingPassword">Correo electronico</label>
+			  </div>
+			
+			<button class="w-100 btn btn-lg btn-primary" type="submit">
+			  Agendar Cita
+			</button>
+			<br />
+			<br /> -->
+			
+
+	  </div>
+	  <!-- <div class="col align-self-end">  -->
+		  <!--Aqui empieza el calendario-->
+		<section class="ftco-section">
+		  <div class="container">
+			<div class="row justify-content-center">
+			  <div class="col-md-6 text-center mb-5">
+				<h2 class="heading-section">
+				  Elija la fecha y hora deseada para la cita
+				</h2>
+			  </div>
+			</div>
+			<div class="row justify-content-center">
+			  <div class="col-md-4 text-center">
+				<h3 class="h5">Horario de atencion de L-V de 7AM a 10 PM</h3>
+				<div class="w-100">
+				  <form action="" method="post" class="datepickers">
+					<div class="form-group text-center"> 
+					  <!-- <label class="label-control" for="id_start_datetime">Datetime picker</label> -->
+					  <div class="input-group date text-center" id="id_0">
+						<input
+						  type="text"
+						  value=""
+						  class="form-control"
+						  placeholder="MM/DD/YYYY hh:mm:ss"
+						  required
+						/>
+					  </div>
+					</div>
+				  </form>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</section>
+		<!-- Aqui acaba el calendario  </div> -->
+
+    </div>
+	</div>
+
+	<div class ="container">
+		<button class="w-100 btn btn-lg btn-primary" type="submit">
+			Agendar Cita
+		</button>
+	</div>
+    <!--Aqui acaba el formulario-->
+
+	{% include "pie.html" %}
+
+    <script src="{% static 'assets/bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/moment-with-locales.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/main.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

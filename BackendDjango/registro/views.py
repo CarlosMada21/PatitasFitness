@@ -118,3 +118,6 @@ def configuracion(request):
 
 def membresias(request):
     return render(request, "membresias.html")
+
+def citas(request):
+    return render(request, "citas.html")
