@@ -33,4 +33,8 @@ urlpatterns = [
     path('eliminacion_cuenta/', views.eliminar, name = "eliminar"),
     path('editar_usuario/', views.editar_usuario, name = "editar_usuario"),
     path('editar/', editar),
+    path('catalogo/', views.catalogo, name = "catalogo"),
+    path('insertar_cita/', views.insertar_cita),
+    path('signin_cita/', views.signin_cita, name ="signin_cita"),
+    
 ]

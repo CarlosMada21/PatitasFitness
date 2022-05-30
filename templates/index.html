@@ -6,7 +6,7 @@
 
     {% if insertado %}
   
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="text-center alert alert-success alert-dismissible fade show" role="alert">
         <strong>¡Felicidades!</strong> Has creado tu cuenta en Patitas Fitness ahora eres un usuario registrado.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -14,7 +14,7 @@
 
     {% elif eliminado%}
 
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
         <strong>¡Te extrañaremos mucho!</strong> Regresa cuando estés listo...
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -114,9 +114,15 @@
       <p class="lead">Ofrecemos una gran variedad de servicios para tu mascota, puedes traerlo cuando tu quieras
           programando su vista.
       </p>
-      <div class="d-grid gap-2 col-3 mx-auto">
-        <a type="button" class="btn btn-danger btn-lg" action="/citas/" href="{% url 'citas' %}">Agenda tu cita</a>
-      </div>
+      {% if LOGIN %}
+        <div class="d-grid gap-2 col-3 mx-auto">
+          <a type="button" class="btn btn-danger btn-lg" action="/citas/" href="{% url 'citas' %}">Agenda tu cita</a>
+        </div>
+      {% else %}
+        <div class="d-grid gap-2 col-3 mx-auto">
+          <a type="button" class="btn btn-danger btn-lg" action="/citas/" href="{% url 'signin_cita' %}">Agenda tu cita</a>
+        </div>
+      {% endif %}
     </div>
     <div class="col-md-5">
       <img src="{% static 'assets/img/dogo1.jpeg' %}" alt="">

@@ -12,8 +12,9 @@ class Usuario:
     inscripcion=False
     apellido=""
     fecha_nac = date(1, 1, 1)
+    id = 0
         
-    def __init__(self, nombre, telefono, email, password, mensualidad, inscripcion, apellido, fecha_nac):
+    def __init__(self, nombre, telefono, email, password, mensualidad, inscripcion, apellido, fecha_nac, id):
             
         self.nombre = nombre
         self.telefono = telefono
@@ -23,5 +24,6 @@ class Usuario:
         self.inscripcion = inscripcion
         self.mensualidad = mensualidad
         self.fecha_nac = fecha_nac
+        self.id = id
     
     
