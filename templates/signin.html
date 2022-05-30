@@ -45,6 +45,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
 
+    {% elif cita %}
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>¡Ya casi!</strong> Debes ingresar para agendar tu cita
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     {% endif %}
 
     <main class="form-signin">

@@ -25,6 +25,10 @@ def signin(request):
     
     return render(request, "signin.html")
 
+def signin_cita(request):
+    cita=True
+    return render(request, "signin.html", {"cita":cita})
+
 def redireccionar_login(request):
     return redirect(login)
 
