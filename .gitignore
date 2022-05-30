@@ -1,0 +1,2 @@
+#Ignorando settings.py para no cambiar conf de BD y rutas de templates
+/BackendDjango/BackendDjango/settings.py
