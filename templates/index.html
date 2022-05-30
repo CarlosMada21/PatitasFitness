@@ -1,6 +1,9 @@
 {% extends "cabecera.html" %}
 {% load static %}
 {% block content %}
+    
+    <!-- Alertas condicionales -->
+
     {% if insertado %}
   
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -9,9 +12,17 @@
       </div>
       
 
+    {% elif eliminado%}
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Te extrañaremos mucho!</strong> Regresa cuando estés listo...
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
     {% endif %}
-    
-    <!-- aqui empieza el carrusel-->
+    <!-- Fin de alertas condicionales -->
+
+    <!-- Inicio el carrusel-->
 
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
       <div class="carousel-indicators">

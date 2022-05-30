@@ -3,6 +3,19 @@
 {% block content %}
 
 <div class="container">
+    <!-- Alertas condicionales -->
+
+    {% if eliminado == False %}
+  
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Rayos!</strong> {{mensaje}}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      
+
+    {% endif %}
+
+    <!-- Fin de alertas condicionales -->
 
     <div class="card-deck">
         
@@ -59,10 +72,29 @@
                     <h5 class="mt-0">Eliminar</h5>
                     Elimina tu cuenta definitivamente
                     <p></p>
-                    <a href="#" class="btn btn-danger"> Eliminar Cuenta</a>
+                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Eliminar Cuenta</a>
                     </div>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">¿Seguro deseas eliminar tu cuenta?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Se eliminarán tus datos definitivamente
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a href="{% url 'eliminar' %}" type="button" class="btn btn-danger" style="color:white;">Borrar</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

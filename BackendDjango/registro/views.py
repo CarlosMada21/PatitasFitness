@@ -12,8 +12,7 @@ from datetime import date
 # from BackendDjango import settings
 from django.conf import settings
 #from django.template.loader import get_template
-
-
+from django.contrib import messages
 
 
 def login(request):
@@ -104,14 +103,8 @@ def inicio(request):
     return render(request, "index.html")
 
 def logout(request):
-    settings.LOGIN = False
-    settings.USUARIO.nombre = ""
-    settings.USUARIO.apellido = ""
-    settings.USUARIO.password = ""
-    settings.USUARIO.email = ""
-    settings.USUARIO.telefono = ""
-    settings.USUARIO.fecha_nac = date(1, 1, 1)
-    return render(request, "index.html")
+    reset_globals()
+    return redirect('inicio')
 
 def configuracion(request):
     return render(request, "configuracion.html")
@@ -121,3 +114,34 @@ def membresias(request):
 
 def citas(request):
     return render(request, "citas.html")
+
+def eliminar(request):
+    eliminado=False
+    mensaje = ""
+    
+    try:
+        borrar_usr = usuario.objects.get(email=settings.USUARIO.email)
+        borrar_usr.delete()
+        eliminado = True
+        reset_globals()
+        return render(request, "index.html", {"eliminado": eliminado})
+    except Exception as e:
+        if type(e) == usuario.DoesNotExist:
+            mensaje="Ha ocurrido un problema al obtener tu usuario. Intenta más tarde."
+            return render(request, "configuracion.html", {"eliminado": eliminado, "mensaje":mensaje})
+        else:
+            print(type(e))
+            print(e)
+            mensaje="Ha ocurrido un error inesperado"
+            return render(request, "configuracion.html", {"eliminado": eliminado, "mensaje":mensaje})
+        
+#Función para reiniciar variables globales
+def reset_globals():
+    settings.LOGIN = False
+    settings.USUARIO.nombre = ""
+    settings.USUARIO.apellido = ""
+    settings.USUARIO.password = ""
+    settings.USUARIO.email = ""
+    settings.USUARIO.telefono = ""
+    settings.USUARIO.fecha_nac = date(1, 1, 1)
+        
