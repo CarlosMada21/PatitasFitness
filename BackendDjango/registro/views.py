@@ -6,8 +6,10 @@ from django.template import Context
 from registro.models import usuario
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from BackendDjango.settings import USUARIO
-from BackendDjango.settings import LOGIN
+# from django.conf import USUARIO
+# from BackendDjango.settings import LOGIN
+# from BackendDjango import settings
+from django.conf import settings
 #from django.template.loader import get_template
 
 
@@ -27,39 +29,38 @@ def redireccionar_login(request):
     return redirect(login)
 
 def buscar(request):
-    # LOGIN=False
     mensaje=""
     email=request.GET['correo']
+    acceso_denegado = False
     
     try:
         usr = usuario.objects.get(email=email)
-        USUARIO.nombre = usr.nombre
-        USUARIO.apellido = usr.apellido
-        USUARIO.password = usr.password
-        USUARIO.email = usr.email
-        USUARIO.telefono = usr.telefono
-        USUARIO.fecha_nac = usr.fecha_nac
-        USUARIO.inscripcion = usr.inscripcion
-        USUARIO.mensualidad = usr.mensualidad
+        settings.USUARIO.nombre = usr.nombre
+        settings.USUARIO.apellido = usr.apellido
+        settings.USUARIO.password = usr.password
+        settings.USUARIO.email = usr.email
+        settings.USUARIO.telefono = usr.telefono
+        settings.USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.inscripcion = usr.inscripcion
+        settings.USUARIO.mensualidad = usr.mensualidad
         
-        print(USUARIO.password)
+        print(settings.USUARIO.password)
         print(request.GET["contrasenia"])
 
-        if((USUARIO.password)==request.GET["contrasenia"]):
-            settings.LOGIN = True
-
-
-            
+        if((settings.USUARIO.password)==request.GET["contrasenia"]):
+            settings.LOGIN = True            
             return render(request, "index.html")
         else:
+            acceso_denegado = True
             mensajeError="Contraseña incorrecta, inténtalo de nuevo."
-            return render(request, "signin.html", {"mensaje":mensajeError})
+            return render(request, "signin.html", {"mensaje":mensajeError, "acceso_denegado": acceso_denegado})
         
     except usuario.DoesNotExist as e:
         #print(type(e))
         #print(e)
+        acceso_denegado = True
         mensajeError="Parece que aún no tienes una cuenta con este correo electrónico."
-        return render(request, "signin.html", {"mensaje":mensajeError})
+        return render(request, "signin.html", {"mensaje":mensajeError, "acceso_denegado": acceso_denegado})
 
 def insertar(request):
 
@@ -76,15 +77,15 @@ def insertar(request):
 
     try:
         usr.save()
-        USUARIO.nombre = usr.nombre
-        USUARIO.apellido = usr.apellido
-        USUARIO.password = usr.password
-        USUARIO.email = usr.email
-        USUARIO.telefono = usr.telefono
-        USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.nombre = usr.nombre
+        settings.USUARIO.apellido = usr.apellido
+        settings.USUARIO.password = usr.password
+        settings.USUARIO.email = usr.email
+        settings.USUARIO.telefono = usr.telefono
+        settings.USUARIO.fecha_nac = usr.fecha_nac
 
         insertado=True
-        LOGIN=True
+        settings.LOGIN=True
         return render(request, "index.html", {"insertado":insertado})
 
     except Exception as e:
