@@ -16,9 +16,6 @@ from django.contrib import messages
 
 
 def login(request):
-    
-    #cargador = get_template('login.html')
-    #plantillaLogin=cargador.render()
     return render(request, "login.html")
 
 def signin(request):
@@ -144,4 +141,58 @@ def reset_globals():
     settings.USUARIO.email = ""
     settings.USUARIO.telefono = ""
     settings.USUARIO.fecha_nac = date(1, 1, 1)
+
+def editar_usuario(request):
+    fecha =  settings.USUARIO.fecha_nac.strftime('%Y-%m-%d')
+    # print(fecha)
+    # dia = fecha[8:9]
+    # mes = fecha[5:6]
+    # anio = fecha[0:3]
+    # print(dia + mes + anio)
+    anio = fecha[0] + fecha[1] + fecha[2] + fecha[3]
+    mes = fecha[5] + fecha[6]
+    dia = fecha[8] + fecha[9]
+    return render(request, "editar_usuario.html", {"dia": dia, "mes": mes, "anio": anio})
         
+def editar(request):
+
+    email = settings.USUARIO.email
+    mensaje = ""
+    cambiado = False
+    usr = usuario.objects.get(email=email)
+    
+    usr.nombre = request.GET["nombre_e"]
+    usr.apellido = request.GET["apellido_e"]
+    usr.fecha_nac = request.GET["anio_e"] + "-" + request.GET["mes_e"] + "-" + request.GET["dia_e"]
+    usr.telefono = request.GET["telefono_e"]
+    usr.password = request.GET["password_e"]
+
+    try:
+        
+        usr.save()
+        settings.USUARIO.nombre = usr.nombre
+        settings.USUARIO.apellido = usr.apellido
+        settings.USUARIO.password = usr.password
+        settings.USUARIO.email = usr.email
+        settings.USUARIO.telefono = usr.telefono
+        settings.USUARIO.fecha_nac = usr.fecha_nac
+
+        mensaje = "Los datos han sido cambiado con éxito"
+        cambiado = True
+        return render(request, "index.html", {"mensaje_e": mensaje, "cambiado": cambiado})
+
+    except Exception as e:
+        if type(e) == IntegrityError:
+            cambiado = False
+            mensaje = "Ocurrió un problema, vuelve a intentarlo"
+            return render(request, "editar_usuario.html", {"mensaje_e": mensaje, "cambiado": cambiado})
+        else:
+            return render(request, "index.html")
+
+# def detalles_cuenta(request):
+
+
+
+
+
+
