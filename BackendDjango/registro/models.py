@@ -34,11 +34,10 @@ class datos_bancarios(models.Model):
     id_usuario=models.IntegerField(null=False)
 
 class cita(models.Model):
-    dia=models.CharField(max_length=2, null=True)
     hora=models.TimeField(auto_now=False, auto_now_add=False)
     fecha=models.DateField(null=True)
     servicio=models.CharField(max_length=255, null=True)
-    id_mascota=models.IntegerField(null=False)
+    id_usuario=models.IntegerField(null=False)
     
 class direccion(models.Model):
     calle=models.CharField(max_length=150, null=False)

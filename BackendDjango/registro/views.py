@@ -3,7 +3,7 @@ from xmlrpc.client import Boolean
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Context
-from registro.models import usuario
+from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
 from datetime import date
@@ -13,7 +13,7 @@ from datetime import date
 from django.conf import settings
 #from django.template.loader import get_template
 from django.contrib import messages
-
+import datetime
 
 def login(request):
     
@@ -29,7 +29,7 @@ def redireccionar_login(request):
     return redirect(login)
 
 def buscar(request):
-    mensaje=""
+    mensajeError=""
     email=request.GET['correo']
     acceso_denegado = False
     
@@ -56,8 +56,6 @@ def buscar(request):
             return render(request, "signin.html", {"mensaje":mensajeError, "acceso_denegado": acceso_denegado})
         
     except usuario.DoesNotExist as e:
-        #print(type(e))
-        #print(e)
         acceso_denegado = True
         mensajeError="Parece que aún no tienes una cuenta con este correo electrónico."
         return render(request, "signin.html", {"mensaje":mensajeError, "acceso_denegado": acceso_denegado})
@@ -65,7 +63,6 @@ def buscar(request):
 def insertar(request):
 
     insertado=False
-    logeado=False
 
     usr = usuario(email = request.GET["correo"], 
         password = request.GET["contrasenia"],
@@ -83,7 +80,8 @@ def insertar(request):
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
         settings.USUARIO.fecha_nac = usr.fecha_nac
-
+        settings.USUARIO.id = usr.id
+        
         insertado=True
         settings.LOGIN=True
         return render(request, "index.html", {"insertado":insertado})
@@ -137,6 +135,35 @@ def eliminar(request):
         
 def catalogo(request):
     return render(request, "catalogo.html")
+
+def insertar_cita(request):
+    fecha_hora=request.POST["fecha_hora"]
+    fecha=fecha_hora[6]+fecha_hora[7]+fecha_hora[8]+fecha_hora[9]+"-"+fecha_hora[0]+fecha_hora[1]+"-"+fecha_hora[3]+fecha_hora[4]
+    hora=fecha_hora[11]+fecha_hora[12]+fecha_hora[14]+fecha_hora[15]+fecha_hora[17]+fecha_hora[18]
+    
+    d = datetime.time(int(fecha_hora[11] + fecha_hora[12]), int(fecha_hora[14]+fecha_hora[15]), int(fecha_hora[17]+fecha_hora[18]))
+    
+    servicio=request.POST["servicio"]
+    id_usuario=settings.USUARIO.id
+    cita_agendada=False
+    cita_no_agendada=False
+    
+    cita_solicitada = cita(hora = d, 
+        fecha= fecha,
+        servicio = servicio,
+        id_usuario = id_usuario
+    )
+    try:
+        cita_solicitada.save()
+        cita_agendada = True
+        mensaje="Cita agendada a las " + hora[0] + hora[1] + ":" + hora[2] + hora[3] + ":" + hora[4] + hora[5] + " del " + fecha
+        return render(request, "citas.html", {"mensaje":mensaje, "cita_agendada": cita_agendada})
+    
+    except Exception:
+        cita_no_agendada=True
+        mensaje="No se pudo agendar tu cita"
+        return render(request, "citas.html", {"mensaje":mensaje, "cita_no_agendada": cita_no_agendada})
+    
 #Función para reiniciar variables globales
 def reset_globals():
     settings.LOGIN = False
@@ -146,4 +173,5 @@ def reset_globals():
     settings.USUARIO.email = ""
     settings.USUARIO.telefono = ""
     settings.USUARIO.fecha_nac = date(1, 1, 1)
+    settings.USUARIO.id = 0
         

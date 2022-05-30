@@ -133,5 +133,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USUARIO = Usuario("", "", "", "", False, False, "", date(1, 1, 1))
+USUARIO = Usuario("", "", "", "", False, False, "", date(1, 1, 1), 0)
 LOGIN = False

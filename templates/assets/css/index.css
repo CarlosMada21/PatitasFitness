@@ -62,3 +62,8 @@ body {
     text-decoration: none;
     color: initial;
 }
+
+.separacion {
+  height: 1rem;
+  border-width: 1px 0;
+}
