@@ -27,4 +27,6 @@ urlpatterns = [
     path('buscar/', buscar),
     path('registro/', include('registro.urls')),
     path('logout/', views.logout, name = "logout"),
+    path('configuracion/', views.configuracion, name = "configuracion"),
+    path('membresias/', views.membresias, name = "membresias"),
 ]

@@ -13,121 +13,124 @@
     
     <!-- aqui empieza el carrusel-->
 
-      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="2000">
-            <img src="{% static 'assets/img/gym1.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block text-white">
-              <h5>Ven y entrena junto con tu mascota</h5>
-              <p>Contamos con un servicio de guarderia para que tu entrenes mientras nosotros
-                atendemos a tu mejor amigo </p>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="{% static 'assets/img/gym2.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block text-white">
-              <h5>El mejor equipamiento</h5>
-              <p>Contamos con una amplia variedad de equipos de la mejor calidad, recuerda que 
-                  para explotar un gran talento, necesitas grandes herramientas
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="{% static 'assets/img/gym3.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block text-white">
-              <h5>Todo lo que necesitas en un solo lugar</h5>
-              <p>Un ecosistema de fitness que ofrece más libertad a la hora de entrenar.</p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+          <img src="{% static 'assets/img/gym1.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h5>Ven y entrena junto con tu mascota</h5>
+            <p>Contamos con un servicio de guarderia para que tu entrenes mientras nosotros
+              atendemos a tu mejor amigo </p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="{% static 'assets/img/gym2.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h5>El mejor equipamiento</h5>
+            <p>Contamos con una amplia variedad de equipos de la mejor calidad, recuerda que 
+                para explotar un gran talento, necesitas grandes herramientas
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="{% static 'assets/img/gym3.jpeg' %}" height="750rem" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-white">
+            <h5>Todo lo que necesitas en un solo lugar</h5>
+            <p>Un ecosistema de fitness que ofrece más libertad a la hora de entrenar.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+<div class="container marketing">
+  <!-- START THE FEATURETTES -->
+
+  <div class="divisor"></div>
+  <div class="row featurette">
+      <div id="conocenos"></div>
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Conocenos. <span class="text-muted"> Somos <strong>Patitas Fitness</strong> el mejor lugar para entrenar</span></h2>
+      <p class="lead">Somos un gimnasio con años de experiencia en el fisico culturimo y especialemente 
+          en el cuidado de tu mascota </p>
+    </div>
+    <div class="col-md-5">
+      <img src="{% static 'assets/img/Logo.png' %}" alt="">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div id="ubicacion"></div>
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">Siempre cerca de ti.</h2>
+      <p class="lead">Contamos con sucursales dentro de toda la republica mexica, visitanos 
+          en tu centro Patitas Fitness más cercano. <b>¡¡no olvides traer a tu mascota!!</b>
+      </p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.038163694767!2d-99.18682238537362!3d19.32415018694605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0008a3c63a55%3A0xe302d1d12e5e67a2!2sFacultad%20de%20Contadur%C3%ADa%20y%20Administraci%C3%B3n%20UNAM!5e0!3m2!1ses-419!2smx!4v1652140424314!5m2!1ses-419!2smx" width="500" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  <div id="servicios"></div>
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Cuidados especiales.</h2>
+      <p class="lead">Ofrecemos una gran variedad de servicios para tu mascota, puedes traerlo cuando tu quieras
+          programando su vista.
+      </p>
+    </div>
+    <div class="col-md-5">
+      <img src="{% static 'assets/img/dogo1.jpeg' %}" alt="">
+
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  <div id="inscripciones"></div>
+  <div class="row justify-content-evenly ">
+      <h2 class="text-center" style="font-size: 50px" >ELIGE TU PLAN</h2>
+      <div class="col">
+          <img src="{% static 'assets/img/plan1.png' %}" class="rounded mx-auto d-block" alt="">
+      </div>
+      <div class="col">
+          <img src="{% static 'assets/img/plan2.png' %}" class="rounded mx-auto d-block" alt="">
+      </div>
+  </div>
+
+  <div class="divisor"></div>
+  <div class="row">
+      <div class="d-grid gap-2 col-3 mx-auto">
+          <a type="button" class="btn btn-danger btn-lg" action="/membresias/" href="{% url 'membresias' %}">Inscríbite ahora</a>
+      </div>
+  </div>
   
-  <div class="container marketing">
-    <!-- START THE FEATURETTES -->
+  <hr class="featurette-divider">
 
-    <div class="divisor"></div>
-    <div class="row featurette">
-        <div id="conocenos"></div>
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Conocenos. <span class="text-muted"> Somos <strong>Patitas Fitness</strong> el mejor lugar para entrenar</span></h2>
-        <p class="lead">Somos un gimnasio con años de experiencia en el fisico culturimo y especialemente 
-            en el cuidado de tu mascota </p>
-      </div>
-      <div class="col-md-5">
-        <img src="{% static 'assets/img/Logo.png' %}" alt="">
-      </div>
-    </div>
+  <!-- /END THE FEATURETTES -->
 
-    <hr class="featurette-divider">
-
-    <div id="ubicacion"></div>
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Siempre cerca de ti.</h2>
-        <p class="lead">Contamos con sucursales dentro de toda la republica mexica, visitanos 
-            en tu centro Patitas Fitness más cercano. <b>¡¡no olvides traer a tu mascota!!</b>
-        </p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.038163694767!2d-99.18682238537362!3d19.32415018694605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0008a3c63a55%3A0xe302d1d12e5e67a2!2sFacultad%20de%20Contadur%C3%ADa%20y%20Administraci%C3%B3n%20UNAM!5e0!3m2!1ses-419!2smx!4v1652140424314!5m2!1ses-419!2smx" width="500" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-    <div id="servicios"></div>
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Cuidados especiales.</h2>
-        <p class="lead">Ofrecemos una gran variedad de servicios para tu mascota, puedes traerlo cuando tu quieras
-            programando su vista.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <img src="{% static 'assets/img/dogo1.jpeg' %}" alt="">
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-    <div id="inscripciones"></div>
-    <div class="row justify-content-evenly ">
-        <h2 class="text-center" style="font-size: 50px" >ELIGE TU PLAN</h2>
-        <div class="col">
-            <img src="{% static 'assets/img/plan1.png' %}" class="rounded mx-auto d-block" alt="">
-        </div>
-        <div class="col">
-            <img src="{% static 'assets/img/plan2.png' %}" class="rounded mx-auto d-block" alt="">
-        </div>
-    </div>
-
-    <div class="divisor"></div>
-    <div class="row">
-        <div class="d-grid gap-2 col-3 mx-auto">
-            <button type="button" class="btn btn-danger btn-lg">Inscríbite ahora</button>
-        </div>
-    </div>
-    
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
-
-  </div><!-- /.container -->
+</div><!-- /.container -->
 
 
+
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

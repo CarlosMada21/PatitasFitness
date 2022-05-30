@@ -1,0 +1,70 @@
+{% extends "cabecera.html" %}
+{% load static %}
+{% block content %}
+<section class="seccion contenedor">
+    <form id="registro" class="registro" action="pagar.html" method="post">
+        <!--#datos_usuario-->
+
+        <div id="paquetes" class="paquetes">
+            <h3>Nuestros planes</h3>
+            <ul class="lista-precios clearfix">
+                <li>
+                    <div class="tabla-precio">
+                        <h3>membresia </h3>
+                        <p class="numero">$499</p>
+                        <ul>
+                            <li>Entrena en cualquiera de nuestros gimnasios en toda la republica mexicana</li>
+                            <li>Area de peso libre y peso integrado </li>
+                            <li>acceso limitado </li>
+                            <li>citas para tu mascota sin costo </li>
+                            <li>sillones de masaje  </li>
+
+                        </ul>
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-danger btn-lg">Inscríbite ahora</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="tabla-precio">
+                        <h3>membresia  </h3>
+                        <p class="numero">$299</p>
+                        <ul>
+                            <li>Entrena en cualquiera de nuestros gimnasios en toda la republica mexicana</li>
+                            <li>Area de peso libre y peso integrado </li>
+                            <li>acceso limitado </li>
+
+                        </ul>
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-danger btn-lg">Inscríbite ahora</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="tabla-precio">
+                        <h3>membresia anual  </h3>
+                        <p class="numero">$ 5000</p>
+                        <ul>
+                            <li>Entrena en cualquiera de nuestros gimnasios en toda la republica mexicana</li>
+                            <li>Area de peso libre y peso integrado </li>
+                            <li>acceso limitado </li>
+                            <li>citas para tu mascota sin costo </li>
+                            <li>sillones de masaje  </li>
+                        </ul>
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-danger btn-lg">Inscríbite ahora</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</section>
+{% endblock %}

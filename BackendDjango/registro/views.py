@@ -112,3 +112,9 @@ def logout(request):
     settings.USUARIO.telefono = ""
     settings.USUARIO.fecha_nac = date(1, 1, 1)
     return render(request, "index.html")
+
+def configuracion(request):
+    return render(request, "configuracion.html")
+
+def membresias(request):
+    return render(request, "membresias.html")
