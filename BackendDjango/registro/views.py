@@ -1,4 +1,5 @@
 from concurrent.futures.process import _ExceptionWithTraceback
+# from tkinter import NE
 from xmlrpc.client import Boolean
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -6,14 +7,14 @@ from django.template import Context
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from datetime import date
+from datetime import datetime
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
 # from BackendDjango import settings
 from django.conf import settings
 #from django.template.loader import get_template
 from django.contrib import messages
-import datetime
+
 
 def login(request):
     return render(request, "login.html")
@@ -36,6 +37,7 @@ def buscar(request):
     
     try:
         usr = usuario.objects.get(email=email)
+        settings.USUARIO.id = usr.id
         settings.USUARIO.nombre = usr.nombre
         settings.USUARIO.apellido = usr.apellido
         settings.USUARIO.password = usr.password
@@ -80,7 +82,7 @@ def insertar(request):
         settings.USUARIO.password = usr.password
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.fecha_nac = datetime(request.GET["anio"], request.GET["mes"], request.GET["dia"])
         settings.USUARIO.id = usr.id
         
         insertado=True
@@ -173,19 +175,19 @@ def reset_globals():
     settings.USUARIO.password = ""
     settings.USUARIO.email = ""
     settings.USUARIO.telefono = ""
-    settings.USUARIO.fecha_nac = date(1, 1, 1)
+    settings.USUARIO.fecha_nac = datetime(1, 1, 1)
     settings.USUARIO.id = 0
 
 def editar_usuario(request):
-    fecha =  settings.USUARIO.fecha_nac.strftime('%Y-%m-%d')
+    # fecha =  settings.USUARIO.fecha_nac.strftime("%Y-%m-%d")
     # print(fecha)
     # dia = fecha[8:9]
     # mes = fecha[5:6]
     # anio = fecha[0:3]
     # print(dia + mes + anio)
-    anio = fecha[0] + fecha[1] + fecha[2] + fecha[3]
-    mes = fecha[5] + fecha[6]
-    dia = fecha[8] + fecha[9]
+    anio = settings.USUARIO.fecha_nac.strftime("%Y")
+    mes = settings.USUARIO.fecha_nac.strftime("%m")
+    dia = settings.USUARIO.fecha_nac.strftime("%d")
     return render(request, "editar_usuario.html", {"dia": dia, "mes": mes, "anio": anio})
         
 def editar(request):
@@ -209,7 +211,8 @@ def editar(request):
         settings.USUARIO.password = usr.password
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.fecha_nac = datetime.strptime(usr.fecha_nac, '%Y-%m-%d')
+        # date(request.GET["anio_e"], request.GET["mes_e"], request.GET["dia_e"])
 
         mensaje = "Los datos han sido cambiado con éxito"
         cambiado = True
@@ -223,6 +226,73 @@ def editar(request):
         else:
             return render(request, "index.html")
 
-# def detalles_cuenta(request):
+def detalles_cuenta(request):
+    # fecha =  settings.USUARIO.fecha_nac.strftime("%Y-%m-%d")
 
+    anio = settings.USUARIO.fecha_nac.strftime("%Y")
+    mes = settings.USUARIO.fecha_nac.strftime("%m")
+    dia = settings.USUARIO.fecha_nac.strftime("%d")
+    return render(request, "detalles_cuenta.html", {"dia": dia, "mes": mes, "anio": anio})
 
+def formas_de_pago(request):
+
+    lista_tarjetas = recuperar_tarjetas()
+    return render(request, "formas_de_pago.html", {"lista_tarjetas": lista_tarjetas})
+
+def direcciones(request):
+    return render(request, "direcciones.html")
+
+def agregar_datos_bancarios(request):
+    return render(request, "agregar_datos_bancarios.html")
+
+def insertar_datos_bancarios(request):
+
+    tarjeta_guardada = False
+
+    numTarjeta = request.GET["num_tarjeta"]
+    mes_v = request.GET["mes_v"]
+    anio_v = request.GET["anio_v"]
+    cvv = request.GET["cvv"]
+    banco = request.GET["banco"]
+    id_usuario = settings.USUARIO.id
+
+    nueva_tarjeta = datos_bancarios(
+        num_tarjeta= numTarjeta,
+        mes_vencimiento = mes_v,
+        anio_vencimiento = anio_v,
+        cvv = cvv,
+        banco = banco,
+        id_usuario = id_usuario,
+        )
+
+    try:
+        nueva_tarjeta.save()
+        tarjeta_guardada = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"tarjeta_guardada": tarjeta_guardada, "lista_tarjetas": lista_tarjetas})
+
+    except Exception:
+        no_hay_tarjeta = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta, "lista_tarjetas": lista_tarjetas})
+
+def recuperar_tarjetas():
+    lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_tarjetas
+
+def eliminar_tarjeta(request):
+    eliminada = False
+
+    tarjeta_seleccionada = request.GET["tarjeta_seleccionada"]
+
+    try:
+        borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=tarjeta_seleccionada)
+        borrar_tarjeta.delete()
+        eliminado = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
+
+    except Exception:
+        no_hay_tarjeta = True
+        return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
+    

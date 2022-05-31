@@ -1,0 +1,100 @@
+{% extends "cabecera.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+            <div class="col">
+                    <h1>Datos Bancarios</h1>
+                    <form action="/insertar_datos_bancarios/" method="GET">
+                        <div class="mb-3">
+                            <label for="tarjeta" class="form-label">Número de tarjeta</label>
+                            <input type="text" pattern="[0-9]{16}" name="num_tarjeta" class="form-control" id="tarjeta" aria-describedby="ayudaTarjeta" required>
+                            <div id="ayudaTarjeta" class="form-text">
+                                Recuerda que solo debes de agregar los 16 digitos de tu tarjeta de credito o debito.
+                                </div>                                
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" pattern="[0-9]{3}" name="cvv" id="cvv" class="form-control" aria-describedby="cvvAyuda" required>
+                            <div id="cvvAyuda" class="form-text">
+                                Ingresa los tres digitos de seguridad que vienen al reverso de tu tarjeta de credito o debito.
+                            </div>
+                        </div>
+                        <div class="mb-3">                                
+                            <label for="apellido" class="form-label">Fecha de vencimiento</label>                                        
+                            <div class="row">                                                 
+                                <!--Seleccion de la fecha de vencimiento mes-->
+                                <div class="col">
+                                    <label for="mes" class="form-label">mes</label>
+                                    <select class="form-select" name = "mes_v" required>
+                                        <option value="01" selected="1">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <!--Seleccion de la fecha de vencimiento año-->
+                                <div class="col">
+                                    <label for="anio" class="form-label">año</label>
+                                    <select class="form-select" name = "anio_v" required>
+                                        <option value="30" selected="1">30</option>
+                                        <option value="29">29</option>
+                                        <option value="28">28</option>
+                                        <option value="27">27</option>
+                                        <option value="26">26</option>
+                                        <option value="25">25</option>
+                                        <option value="24">24</option>
+                                        <option value="23">23</option>
+                                        <option value="22">22</option>                                            
+                                    </select>
+                                </div>                                                             
+                            </div>
+                        </div>
+
+                        <div class="row">                                                 
+                            <!--Seleccion de la fecha de vencimiento mes-->
+                            <div class="col">
+                                <label for="mes" class="form-label">Banco</label>
+                                <input type="text" class="form-control" name = "banco" id="banco">
+                                <!-- <select class="form-select" name = "banco" required>
+                                    <option value="HSBC" selected="1">HSBC</option>
+                                    <option value="City banamex">City banamex</option>
+                                    <option value="BBVA">BBVA</option>
+                                    <option value="Banorte">Banorte</option>
+                                    <option value="Banregio">Banregio</option>
+                                    <option value="Banco azteca">Banco azteca</option>
+                                    <option value="BanCoppel">BanCoppel</option>
+                                    <option value="Scotiabank">Scotiabank</option>
+                                    <option value="Santander">Santander</option>
+                                    <option value="Banjercito">Banjercito</option>
+                                    <option value="Inbursa">Inbursa</option>
+                                    <option value="American express">American express</option>
+                                </select> -->
+                            </div>                        
+                        </div>
+
+                        <div class="separacion"></div>
+                        <div class="separacion"></div>
+                        <a type="submit" href="{% url 'formas_de_pago' %}" class="btn btn-danger" style="color: white">Cancelar</a> 
+                        <button type="submit" class="btn btn-primary" style="color: white">Agregar forma de pago</button>
+                    </form>
+            </div>
+
+        <div class="col">
+            <img src="{% static 'assets/img/Logo.png' %}" alt="">
+        </div>
+    </div>
+</div>  
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% endblock %}
