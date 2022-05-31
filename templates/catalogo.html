@@ -2,65 +2,104 @@
 {% load static %}
 {% block content %}
 
-<main class="contenedor">
+<section class="seccion contenedor">
+    <h2> tienda de suplementación y para mascota</h2>
 
-    <div class="calendario">
+        <div id="paquetes" class="paquetes">
+            <ul class="lista-precios clearfix">
+                <li>
+                    <div class="tabla-precio">
+                        <h3>creatina</h3>
+                        <p class="numero">$499</p>
+                        <img src="{% static 'assets/img/creatina.png' %}" width="250" height="250"  alt="">
 
+                        <ul>
+                            <li>Entrena con la mejor suplementación</li>
+                            <li>Aumenta tu fuerza  </li>
+                            <li>No es un esteroide  </li>
+                            <li>No tiene efectos secundarios  </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="tabla-precio">
+                        <h3>proteína </h3>
+                        <p class="numero">$299</p>
+                        <img src="{% static 'assets/img/proteina.png' %}" width="250" height="250"  alt="">
 
+                        <ul>
+                            <li>Entrena con la mejor suplementación</li>
+                            <li>Aumenta tu fuerza  </li>
+                            <li>No es un esteroide  </li>
+                            <li>no tiene efectos secundarios  </li>
+                        </ul>
+                    </div>
+                </li>
 
-        <h3>
-            <i class="fa-solid fa-dumbbell"></i> Productos
-        </h3>
+                <li>
+                    <div class="tabla-precio">
+                        <h3>testosterona </h3>
+                        <p class="numero">$1500</p>
+                        <img src="{% static 'assets/img/testoterona.png' %}" width="250" height="250"  alt="">
 
-        <div class="dia">
-            <p>Proteina de suero de leche </p>
-            <p>costo: $500</p>
+                        <ul>
+                            <li>Entrena con la mejor suplementación</li>
+                            <li>Aumenta tu fuerza  </li>
+                            <li>hormona de crecimiento  </li>
+                            <li>contiene efectos secundarios </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="lista-precios clearfix">
+                <li>
+                    <div class="tabla-precio">
+                        <h3>correa</h3>
+                        <p class="numero">$50</p>
+                        <img src="{% static 'assets/img/correa.png' %}" width="250" height="250"  alt="">
 
-            <img src="{% static 'assets/img/proteina.png' %}" alt="" width="350" height="400">
-            
+                        <ul>
+                            <li>El mejor material para la piel de tu mascota </li>
+                            <li>con vitaminas incluidas para la piel de tu mascota </li>
+                            <li>2 metros de largo </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="tabla-precio">
+                        <h3>croqueta </h3>
+                        <p class="numero">$299</p>
+                        <img src="{% static 'assets/img/croqueta.png' %}" width="250" height="250"  alt="">
+
+                        <ul>
+                            <li>adicionada con vitaminas y minerales </li>
+                            <li>Evita el sarro de tu mascota</li>
+                            <li>para adulto y cachorro</li>
+                            <li>para razas pequeñas, medianas y grandes</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="tabla-precio">
+                        <h3>mordedera </h3>
+                        <p class="numero">$1500</p>
+                        <img src="{% static 'assets/img/juguete.png' %}" width="250" height="250"  alt="">
+
+                        <ul>
+                            <li>Elimina el sarro de tu mascota</li>
+                            <li>adicionados con vitaminas y minerales </li>
+                            <li>hecho con la mejor calidad para tu mascota  </li>
+                            <li>no tóxico  </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
         </div>
-        
-        <div class="dia">
-            <p>creatina</p>
-            <p>costo: $300</p>
 
-            <img src="{% static 'assets/img/creatina.png' %}" alt="" width="350" height="400">
-        </div>
-        <div class="dia">
-            <p>testosterona</p>
-            <p>costo: $500</p>
-
-            <img src="{% static 'assets/img/testoterona.png' %}" alt="" width="350" height="400">
-        </div>
-        <h3>
-            <i class="fa-solid fa-dumbbell"></i> Productos para la mascota 
-        </h3>
-
-        <div class="dia">
-            <p>correas</p>
-            <p>costo: $50</p>
-
-            <img src="{% static 'assets/img/correa.png' %}" alt="correa de perro " width="350" height="400">
-        </div>
-        <div class="dia">
-            <p>Croquetas </p>
-            <p>costo: $500</p>
-
-            <img src="{% static 'assets/img/croqueta.png' %}" alt="" width="350" height="400">
-            
-        </div>
-        <div class="dia">
-            <p>Juguetes </p>
-            <p>costo: $50</p>
-
-            <img src="{% static 'assets/img/juguete.png' %}" width="350" height="400" alt="">
-        </div>
-
-
-
-        </section>
-
-
-</main>
+    </form>
+</section>
 
 {% endblock %}

@@ -22,15 +22,12 @@ class producto(models.Model):
     precio=models.FloatField()
     imagen=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null=True)
     
-class banco(models.Model):
-    nombre=models.CharField(max_length=100, null=True)
-    
 class datos_bancarios(models.Model):
-    num_tarjeta=models.CharField(max_length=16, null=True)
+    num_tarjeta=models.CharField(max_length=16, null=True, unique=True)
     mes_vencimiento=models.CharField(max_length=2, null=True)
     anio_vencimiento=models.CharField(max_length=2, null=True)
     cvv=models.CharField(max_length=3, null=True)
-    id_banco=models.IntegerField(null=False)
+    banco=models.CharField(max_length=25, null=True)
     id_usuario=models.IntegerField(null=False)
 
 class cita(models.Model):

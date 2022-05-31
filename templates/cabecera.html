@@ -99,7 +99,7 @@
                                 <img src="{% static 'assets/img/configuracion.png' %}" alt="" width="43" height="43" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle">
                                 <a class="dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class=" dropdown-toggle" style="color: white" href="#">  Configuración  </a>
                                 <div class="dropdown-menu ">
-                                    <a class="dropdown-item" href="#">Detalles de cuenta</a>
+                                    <a class="dropdown-item" href="{% url 'detalles_cuenta' %}">Detalles de cuenta</a>
                                     <a class="dropdown-item" href="{% url 'configuracion' %}">Configuración</a>
                                     <a class="dropdown-item" style="color: red" href="{% url 'logout' %}">Cerrar sesion</a>
                                 </div>

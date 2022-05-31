@@ -36,5 +36,11 @@ urlpatterns = [
     path('catalogo/', views.catalogo, name = "catalogo"),
     path('insertar_cita/', views.insertar_cita),
     path('signin_cita/', views.signin_cita, name ="signin_cita"),
+    path('detalles_cuenta/', views.detalles_cuenta, name ="detalles_cuenta"),
+    path('formas_de_pago/', views.formas_de_pago, name ="formas_de_pago"),
+    path('direcciones/', views.direcciones, name ="direcciones"),
+    path('agregar_datos_bancarios/', views.agregar_datos_bancarios, name ="agregar_datos_bancarios"),
+    path('insertar_datos_bancarios/', views.insertar_datos_bancarios, name ="insertar_datos_bancarios"),
+    path('eliminar_tarjeta/', views.eliminar_tarjeta, name ="eliminar_tarjeta"),
     
 ]
