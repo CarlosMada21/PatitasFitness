@@ -241,7 +241,9 @@ def formas_de_pago(request):
     return render(request, "formas_de_pago.html", {"lista_tarjetas": lista_tarjetas})
 
 def direcciones(request):
-    return render(request, "direcciones.html")
+
+    lista_direcciones = recuperar_direcciones()
+    return render(request, "direcciones.html", {"lista_direcciones": lista_direcciones})
 
 def agregar_datos_bancarios(request):
     return render(request, "agregar_datos_bancarios.html")
@@ -282,7 +284,6 @@ def recuperar_tarjetas():
     return lista_tarjetas
 
 
-
 def eliminar_tarjeta(request):
     eliminada = False
 
@@ -299,8 +300,8 @@ def eliminar_tarjeta(request):
         no_hay_tarjeta = True
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
     
-def editar_direcciones(reques):
-    return render(reques, "editar_direcciones.html")
+def editar_direcciones(request):
+    return render(request, "editar_direcciones.html")
 
 def insertar_direccion(request):
 
@@ -316,8 +317,6 @@ def insertar_direccion(request):
     referencia = request.GET["referencia"]
     id_usuario = settings.USUARIO.id
 
-    print("sí recibo")
-
     nueva_direccion= direccion(
         colonia = colonia,
         alcaldia = alcaldia,
@@ -329,15 +328,12 @@ def insertar_direccion(request):
         referencia = referencia,
         id_usuario = id_usuario,
         )
-    print("se crea la nueva direccion")
 
     try:
         nueva_direccion.save()
-        print("se salva la nueva direccion")
         direccion_guardada = True
         lista_direcciones = recuperar_direcciones()
-        print("se recuperan las direcciones")
-        return render(request, "direcciones.html", {"tarjeta_guardada": direccion_guardada, "lista_direcciones": lista_direcciones})
+        return render(request, "direcciones.html", {"direccion_guardada": direccion_guardada, "lista_direcciones": lista_direcciones})
 
     except Exception:
         no_hay_direccion = True

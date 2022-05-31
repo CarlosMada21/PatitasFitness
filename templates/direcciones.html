@@ -30,7 +30,7 @@
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="radio" name="direccion_seleccionada" value="{{direccion.id}}" aria-label="Radio button for following text input">
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with radio button" value="{{direccion.calle}}  {{direccion.num_ext}}  {{direccion.num_int}}" disabled>
+                        <input type="text" class="form-control" aria-label="Text input with radio button" value="{{direccion.calle}}  {{direccion.num_ext}}  {{direccion.num_int}} col. {{direccion.colonia}}" disabled>
                     </div>
                 {% empty %}
                     <h5>No hay ninguna dirección guardada</h3>
