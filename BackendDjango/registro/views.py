@@ -7,7 +7,7 @@ from django.template import Context
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from datetime import datetime
+import datetime
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
 # from BackendDjango import settings
@@ -280,6 +280,10 @@ def recuperar_tarjetas():
     lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
     return lista_tarjetas
 
+def recuperar_citas():
+    lista_citas = cita.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_citas
+
 def eliminar_tarjeta(request):
     eliminada = False
 
@@ -288,11 +292,30 @@ def eliminar_tarjeta(request):
     try:
         borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=tarjeta_seleccionada)
         borrar_tarjeta.delete()
-        eliminado = True
+        eliminada = True
         lista_tarjetas = recuperar_tarjetas()
         return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
 
     except Exception:
         no_hay_tarjeta = True
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
-    
+
+def citas_registradas(request):
+    lista_citas=recuperar_citas()
+    return render(request, "citas_registradas.html", {"lista_citas":lista_citas})
+
+def eliminar_cita(request):
+    eliminada = False
+
+    cita_seleccionada = request.GET["cita_seleccionada"]
+
+    try:
+        borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=cita_seleccionada)
+        borrar_tarjeta.delete()
+        eliminada = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
+
+    except Exception:
+        no_hay_tarjeta = True
+        return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})

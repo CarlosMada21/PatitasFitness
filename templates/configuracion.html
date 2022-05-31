@@ -67,12 +67,12 @@
         <div class="card" >
             <div class="card-body">
                 <div class="media">
-                    <img class="mr-3" src="{%static 'assets/img/citas.png' %}" alt="" width="45" height="50">
+                    <img class="mr-3" src="{%static 'assets/img/cita.png' %}" alt="" width="45" height="50">
                     <div class="media-body">
                       <h5 class="mt-0">Citas</h5>
                       Consulta tus citas agendadas.
                       <p></p>
-                      <a href="#" class="btn btn-primary"> Consultar citas</a>
+                      <a href="{% url 'citas_registradas' %}" class="btn btn-primary"> Consultar citas</a>
                     </div>
                 </div>
             </div>
