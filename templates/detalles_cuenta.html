@@ -1,0 +1,71 @@
+{% extends "cabecera.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+            <div class="col">
+                    <h1>Datos de Usuario</h1>
+                    <form>
+                        <div class="mb-3"></div>
+                        <div class="mb-3">
+                            <label for="apellido" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="" value="{{USUARIO.nombre}}" disabled>
+                        </div>
+                        
+                        </br>
+                            <div class="mb-3">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="" value="{{USUARIO.apellido}}" disabled>
+                            </div>   
+                        </br>
+                        
+                        </br>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="" value="{{USUARIO.telefono}}" disabled>
+                            </div>   
+                        </br>   
+                        
+                        </br>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Correo Electronico</label>
+                                <input type="text" class="form-control" id="" value="{{USUARIO.email}}" disabled>
+                            </div>
+                        </br> 
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Día</label>
+                                    <input type="text" class="form-control" id="" value="{{dia}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Mes</label>
+                                    <input type="text" class="form-control" id="" value="{{mes}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Año</label>
+                                    <input type="text" class="form-control" id="" value="{{anio}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                                                                                                  
+                        <a type="submit" class="btn btn-secondary" href="{% url 'inicio' %}" style="color: white">Regresar</a> 
+                        <a type="submit" class="btn btn-primary" href="{% url 'editar_usuario' %}" style="color: white">Editar datos personales</a>
+                    </form>
+            </div>
+
+        <div class="col">
+            <img src="{% static 'assets/img/Logo.png' %}" alt="">
+        </div>
+    </div>
+</div>  
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+{% endblock %}

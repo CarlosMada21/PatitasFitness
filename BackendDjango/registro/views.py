@@ -6,14 +6,14 @@ from django.template import Context
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from datetime import date
+from datetime import datetime
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
 # from BackendDjango import settings
 from django.conf import settings
 #from django.template.loader import get_template
 from django.contrib import messages
-import datetime
+
 
 def login(request):
     return render(request, "login.html")
@@ -80,7 +80,7 @@ def insertar(request):
         settings.USUARIO.password = usr.password
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.fecha_nac = datetime(request.GET["anio"], request.GET["mes"], request.GET["dia"])
         settings.USUARIO.id = usr.id
         
         insertado=True
@@ -173,19 +173,19 @@ def reset_globals():
     settings.USUARIO.password = ""
     settings.USUARIO.email = ""
     settings.USUARIO.telefono = ""
-    settings.USUARIO.fecha_nac = date(1, 1, 1)
+    settings.USUARIO.fecha_nac = datetime(1, 1, 1)
     settings.USUARIO.id = 0
 
 def editar_usuario(request):
-    fecha =  settings.USUARIO.fecha_nac.strftime('%Y-%m-%d')
+    # fecha =  settings.USUARIO.fecha_nac.strftime("%Y-%m-%d")
     # print(fecha)
     # dia = fecha[8:9]
     # mes = fecha[5:6]
     # anio = fecha[0:3]
     # print(dia + mes + anio)
-    anio = fecha[0] + fecha[1] + fecha[2] + fecha[3]
-    mes = fecha[5] + fecha[6]
-    dia = fecha[8] + fecha[9]
+    anio = settings.USUARIO.fecha_nac.strftime("%Y")
+    mes = settings.USUARIO.fecha_nac.strftime("%m")
+    dia = settings.USUARIO.fecha_nac.strftime("%d")
     return render(request, "editar_usuario.html", {"dia": dia, "mes": mes, "anio": anio})
         
 def editar(request):
@@ -209,7 +209,8 @@ def editar(request):
         settings.USUARIO.password = usr.password
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = usr.fecha_nac
+        settings.USUARIO.fecha_nac = datetime.strptime(usr.fecha_nac, '%Y-%m-%d')
+        # date(request.GET["anio_e"], request.GET["mes_e"], request.GET["dia_e"])
 
         mensaje = "Los datos han sido cambiado con éxito"
         cambiado = True
@@ -223,6 +224,22 @@ def editar(request):
         else:
             return render(request, "index.html")
 
-# def detalles_cuenta(request):
+def detalles_cuenta(request):
+    # fecha =  settings.USUARIO.fecha_nac.strftime("%Y-%m-%d")
 
+    anio = settings.USUARIO.fecha_nac.strftime("%Y")
+    mes = settings.USUARIO.fecha_nac.strftime("%m")
+    dia = settings.USUARIO.fecha_nac.strftime("%d")
+    return render(request, "detalles_cuenta.html", {"dia": dia, "mes": mes, "anio": anio})
 
+def formas_de_pago(request):
+    return render(request, "formas_de_pago.html")
+
+def direcciones(request):
+    return render(request, "direcciones.html")
+
+def agregar_datos_bancarios(request):
+    return render(request, "agregar_datos_bancarios.html")
+
+def insertar_datos_bancarios(request):
+    

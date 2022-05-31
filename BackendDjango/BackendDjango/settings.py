@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from registro.usuario import Usuario
-from datetime import date
+from datetime import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATICFILES_DIRS=['C:/Users/52556/OneDrive/Documentos/InfoVI/ProyectoFinal/PatitasFitness/templates']
+STATICFILES_DIRS=['/home/cyntia/Documentos/6toSemestre/Info/MadaPatitas/PatitasFitness/templates']
 
 # Application definition
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'BackendDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/52556/OneDrive/Documentos/InfoVI/ProyectoFinal/PatitasFitness/templates'], #Ruta de carpeta donde están los html que usaremos
+        'DIRS': ['/home/cyntia/Documentos/6toSemestre/Info/MadaPatitas/PatitasFitness/templates'], #Ruta de carpeta donde están los html que usaremos
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'patitas_fitness',
         'USER': 'postgres',
-        'PASSWORD': '$#Cracklos10#$',
+        'PASSWORD': 'prueba',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '5432',
         'CHARSET': 'UTF8',
@@ -133,5 +133,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USUARIO = Usuario("", "", "", "", False, False, "", date(1, 1, 1), 0)
+USUARIO = Usuario("", "", "", "", False, False, "", datetime(1, 1, 1), 0)
 LOGIN = False

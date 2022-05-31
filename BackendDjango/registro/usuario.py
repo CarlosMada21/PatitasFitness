@@ -1,5 +1,5 @@
 import email
-from datetime import date
+from datetime import datetime
 
 
 class Usuario:
@@ -11,7 +11,7 @@ class Usuario:
     mensualidad=False
     inscripcion=False
     apellido=""
-    fecha_nac = date(1, 1, 1)
+    fecha_nac = datetime(1, 1, 1)
     id = 0
         
     def __init__(self, nombre, telefono, email, password, mensualidad, inscripcion, apellido, fecha_nac, id):
