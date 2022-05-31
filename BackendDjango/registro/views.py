@@ -8,7 +8,7 @@ from django.template import Context
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from datetime import datetime
+import datetime
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
 # from BackendDjango import settings
@@ -283,6 +283,9 @@ def recuperar_tarjetas():
     lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
     return lista_tarjetas
 
+def recuperar_citas():
+    lista_citas = cita.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_citas
 
 def eliminar_tarjeta(request):
     eliminada = False
@@ -299,7 +302,7 @@ def eliminar_tarjeta(request):
     except Exception:
         no_hay_tarjeta = True
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
-    
+
 def editar_direcciones(request):
     return render(request, "editar_direcciones.html")
 
@@ -360,11 +363,6 @@ def eliminar_direccion(request):
         no_hay_direccion= True
         return render(request, "direccione.html", {"no_hay_direccion": no_hay_direccion})
 
-
-
-
-
-
-
-
-
+def citas_registradas(request):
+    lista_citas=recuperar_citas()
+    return render(request, "citas_registradas.html", {"lista_citas":lista_citas})

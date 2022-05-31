@@ -45,6 +45,5 @@ urlpatterns = [
     path('editar_direcciones/', views.editar_direcciones, name ="editar_direcciones"),
     path('insertar_direccion/', views.insertar_direccion, name ="insertar_direccion"),
     path('eliminar_direccion/', views.eliminar_direccion, name ="eliminar_direccion"),
-    
-    
+    path('citas_registradas/', views.citas_registradas, name ="citas_registradas"),
 ]
