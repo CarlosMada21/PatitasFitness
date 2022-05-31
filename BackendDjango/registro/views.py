@@ -1,3 +1,4 @@
+from calendar import c
 from concurrent.futures.process import _ExceptionWithTraceback
 # from tkinter import NE
 from xmlrpc.client import Boolean
@@ -280,6 +281,8 @@ def recuperar_tarjetas():
     lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
     return lista_tarjetas
 
+
+
 def eliminar_tarjeta(request):
     eliminada = False
 
@@ -288,7 +291,7 @@ def eliminar_tarjeta(request):
     try:
         borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=tarjeta_seleccionada)
         borrar_tarjeta.delete()
-        eliminado = True
+        eliminada = True
         lista_tarjetas = recuperar_tarjetas()
         return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
 
@@ -296,3 +299,76 @@ def eliminar_tarjeta(request):
         no_hay_tarjeta = True
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
     
+def editar_direcciones(reques):
+    return render(reques, "editar_direcciones.html")
+
+def insertar_direccion(request):
+
+    direccion_guardada = False
+
+    colonia = request.GET["colonia"]
+    alcaldia = request.GET["alcaldia"]
+    calle = request.GET["calle"]
+    num_ext = request.GET["no_ext"]
+    num_int = request.GET["no_int"]
+    cp = request.GET["cp"]
+    entre_calles = request.GET["entre_calles"]
+    referencia = request.GET["referencia"]
+    id_usuario = settings.USUARIO.id
+
+    print("sí recibo")
+
+    nueva_direccion= direccion(
+        colonia = colonia,
+        alcaldia = alcaldia,
+        calle = calle,
+        num_ext = num_ext,
+        num_int = num_int,
+        cp = cp,
+        entre_calles = entre_calles,
+        referencia = referencia,
+        id_usuario = id_usuario,
+        )
+    print("se crea la nueva direccion")
+
+    try:
+        nueva_direccion.save()
+        print("se salva la nueva direccion")
+        direccion_guardada = True
+        lista_direcciones = recuperar_direcciones()
+        print("se recuperan las direcciones")
+        return render(request, "direcciones.html", {"tarjeta_guardada": direccion_guardada, "lista_direcciones": lista_direcciones})
+
+    except Exception:
+        no_hay_direccion = True
+        lista_direcciones = recuperar_direcciones()
+        return render(request, "direcciones.html", {"no_hay_direccion": no_hay_direccion, "lista_direcciones": lista_direcciones})
+
+def recuperar_direcciones():
+    lista_direcciones = direccion.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_direcciones
+
+def eliminar_direccion(request):
+    eliminada = False
+
+    direccion_seleccionada = request.GET["direccion_seleccionada"]
+
+    try:
+        borrar_direccion = direccion.objects.get(id=direccion_seleccionada)
+        borrar_direccion.delete()
+        eliminada = True
+        lista_direcciones = recuperar_direcciones()
+        return render(request, "direcciones.html", {"eliminada": eliminada, "lista_direcciones": lista_direcciones})
+
+    except Exception:
+        no_hay_direccion= True
+        return render(request, "direccione.html", {"no_hay_direccion": no_hay_direccion})
+
+
+
+
+
+
+
+
+

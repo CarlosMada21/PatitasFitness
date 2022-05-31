@@ -2,63 +2,53 @@
 {% load static %}
 {% block content %}
 
+{% if direccion_guardada %}
+  
+    <div class="text-center alert alert-success alert-dismissible fade show" role="alert">
+        <strong>¡Perfecto!</strong> Se ha guardado la nueva Dirección
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% elif no_hay_direccion %}
+
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>¡Oh no!</strong> Algo salió mal, inténtalo de nuevo
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endif %}
+
+
 <div class="container">
     <div class="row">
-            <div class="col">
-                <h1>Mis direcciones</h1>
+        <div class="col">
+            <h1>Mis direcciones</h1>
+            <form action="/eliminar_direccion/" method="GET"> {% csrf_token %}
                 
-                <form>
-                    <div class="mb-3">
-                        <label for="colonia" class="form-label">Colonia</label>
-                        <input type="text" pattern="[A-Za-z]{1,255}" class="form-control" id="colonia" required>                                                                                
+                {% for direccion in lista_direcciones %}
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input mt-0" type="radio" name="direccion_seleccionada" value="{{direccion.id}}" aria-label="Radio button for following text input">
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with radio button" value="{{direccion.calle}}  {{direccion.num_ext}}  {{direccion.num_int}}" disabled>
                     </div>
+                {% empty %}
+                    <h5>No hay ninguna dirección guardada</h3>
+                {% endfor %}
 
-                    <div class="mb-3">
-                        <label for="alcaldia" class="form-label">Alcaldia</label>
-                        <input type="text" pattern="[A-Za-z]{1,255}" class="form-control" id="alcaldia" required>                                                                                
-                    </div>                                                
-
-                    <div class="mb-3">
-                        <label for="calle" class="form-label">Calle</label>
-                        <input type="text" pattern="[A-Za-z]{1,255}" class="form-control" id="calle" required>                                                                                
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="numext" class="form-label">Número exterior</label>
-                        <input type="text" pattern="[0-9]{4}" class="form-control" id="numext">                                                                                
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="numint" class="form-label">Número interior</label>
-                        <input type="text" pattern="[0-9]{4}" class="form-control" id="numint">                                                                                
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="cp" class="form-label">Código postal</label>
-                        <input type="text" pattern="[0-9]{5}" id="cp" class="form-control" required>                                                      
-                        </div>                        
-
-                    <div class="mb-3">
-                        <label for="calle" class="form-label">Entre calles</label>
-                        <input type="text" pattern="[A-Za-z]{1,255}" class="form-control" id="entre_calles" required>                                                                                
-                    </div>      
-                    
-                    <div class="mb-3">
-                        <label for="calle" class="form-label">Referencias</label>
-                        <input type="text" pattern="[A-Za-z]{1,255}" class="form-control" id="entre_calles" required>                                                                                
-                    </div>                                                
-    
-                        <a class="btn btn-danger" style="color: white">Cancelar</a> 
-                        <button type="submit" class="btn btn-primary">Agregar dirección</button>
-                </form>
-            </div>    
+                <div class="separacion"></div>
+                <div class="separacion"></div>
+                <a class="btn btn-secondary" href="{% url 'configuracion' %}"  style="color: white">Regresar</a>
+                <button type="submit" class="btn btn-danger" style="color: white">Eliminar</button> 
+                <a href="{% url 'editar_direcciones' %}" class="btn btn-primary" style="color: white">Agregar Dirección</a>
+            </form>
+        </div>
 
         <div class="col">
             <img src="{% static 'assets/img/Logo.png' %}" alt="">
         </div>
     </div>
 </div>  
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
