@@ -42,5 +42,5 @@ urlpatterns = [
     path('agregar_datos_bancarios/', views.agregar_datos_bancarios, name ="agregar_datos_bancarios"),
     path('insertar_datos_bancarios/', views.insertar_datos_bancarios, name ="insertar_datos_bancarios"),
     path('eliminar_tarjeta/', views.eliminar_tarjeta, name ="eliminar_tarjeta"),
-    
+    path('citas_registradas/', views.citas_registradas, name ="citas_registradas"),
 ]
