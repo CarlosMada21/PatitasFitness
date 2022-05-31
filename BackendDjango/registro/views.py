@@ -8,8 +8,6 @@ from django.template import Context
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
-from datetime import datetime
-from datetime import *
 import datetime
 # from django.conf import USUARIO
 # from BackendDjango.settings import LOGIN
@@ -144,7 +142,6 @@ def catalogo(request):
 
 def insertar_cita(request):
     fecha_hora=request.POST["fecha_hora"]
-    # anio = settings.USUARIO.fecha_nac.strftime("%Y")
     fecha=fecha_hora[6]+fecha_hora[7]+fecha_hora[8]+fecha_hora[9]+"-"+fecha_hora[0]+fecha_hora[1]+"-"+fecha_hora[3]+fecha_hora[4]
     hora=fecha_hora[11]+fecha_hora[12]+fecha_hora[14]+fecha_hora[15]+fecha_hora[17]+fecha_hora[18]
     
@@ -179,7 +176,7 @@ def reset_globals():
     settings.USUARIO.password = ""
     settings.USUARIO.email = ""
     settings.USUARIO.telefono = ""
-    settings.USUARIO.fecha_nac = datetime.datetime(1, 1, 1)
+    settings.USUARIO.fecha_nac = datetime(1, 1, 1)
     settings.USUARIO.id = 0
 
 def editar_usuario(request):
@@ -215,7 +212,7 @@ def editar(request):
         settings.USUARIO.password = usr.password
         settings.USUARIO.email = usr.email
         settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = datetime.datetime.strptime(usr.fecha_nac, '%Y-%m-%d')
+        settings.USUARIO.fecha_nac = datetime.strptime(usr.fecha_nac, '%Y-%m-%d')
         # date(request.GET["anio_e"], request.GET["mes_e"], request.GET["dia_e"])
 
         mensaje = "Los datos han sido cambiado con éxito"
@@ -286,6 +283,9 @@ def recuperar_tarjetas():
     lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
     return lista_tarjetas
 
+def recuperar_citas():
+    lista_citas = cita.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_citas
 
 def eliminar_tarjeta(request):
     eliminada = False
@@ -302,7 +302,7 @@ def eliminar_tarjeta(request):
     except Exception:
         no_hay_tarjeta = True
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
-    
+
 def editar_direcciones(request):
     return render(request, "editar_direcciones.html")
 
@@ -363,13 +363,6 @@ def eliminar_direccion(request):
         no_hay_direccion= True
         return render(request, "direccione.html", {"no_hay_direccion": no_hay_direccion})
 
-
 def citas_registradas(request):
     lista_citas=recuperar_citas()
     return render(request, "citas_registradas.html", {"lista_citas":lista_citas})
-
-
-
-
-
-
