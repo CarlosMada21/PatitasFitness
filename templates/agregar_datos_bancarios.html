@@ -9,14 +9,14 @@
                     <form action="/insertar_datos_bancarios/" method="GET">
                         <div class="mb-3">
                             <label for="tarjeta" class="form-label">Número de tarjeta</label>
-                            <input type="text" pattern="[0-9]{16}" class="form-control" id="tarjeta" aria-describedby="ayudaTarjeta" required>
+                            <input type="text" pattern="[0-9]{16}" name="num_tarjeta" class="form-control" id="tarjeta" aria-describedby="ayudaTarjeta" required>
                             <div id="ayudaTarjeta" class="form-text">
                                 Recuerda que solo debes de agregar los 16 digitos de tu tarjeta de credito o debito.
                                 </div>                                
                         </div>
                         <div class="mb-3">
                             <label for="cvv" class="form-label">CVV</label>
-                            <input type="text" pattern="[0-9]{3}" id="cvv" class="form-control" aria-describedby="cvvAyuda" required>
+                            <input type="text" pattern="[0-9]{3}" name="cvv" id="cvv" class="form-control" aria-describedby="cvvAyuda" required>
                             <div id="cvvAyuda" class="form-text">
                                 Ingresa los tres digitos de seguridad que vienen al reverso de tu tarjeta de credito o debito.
                             </div>
@@ -27,7 +27,7 @@
                                 <!--Seleccion de la fecha de vencimiento mes-->
                                 <div class="col">
                                     <label for="mes" class="form-label">mes</label>
-                                    <select class="form-select" name = "mes" required>
+                                    <select class="form-select" name = "mes_v" required>
                                         <option value="01" selected="1">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -45,7 +45,7 @@
                                 <!--Seleccion de la fecha de vencimiento año-->
                                 <div class="col">
                                     <label for="anio" class="form-label">año</label>
-                                    <select class="form-select" name = "anio" required>
+                                    <select class="form-select" name = "anio_v" required>
                                         <option value="30" selected="1">30</option>
                                         <option value="29">29</option>
                                         <option value="28">28</option>
@@ -64,7 +64,8 @@
                             <!--Seleccion de la fecha de vencimiento mes-->
                             <div class="col">
                                 <label for="mes" class="form-label">Banco</label>
-                                <select class="form-select" name = "mes" required>
+                                <input type="text" class="form-control" name = "banco" id="banco">
+                                <!-- <select class="form-select" name = "banco" required>
                                     <option value="HSBC" selected="1">HSBC</option>
                                     <option value="City banamex">City banamex</option>
                                     <option value="BBVA">BBVA</option>
@@ -77,19 +78,19 @@
                                     <option value="Banjercito">Banjercito</option>
                                     <option value="Inbursa">Inbursa</option>
                                     <option value="American express">American express</option>
-                                </select>
+                                </select> -->
                             </div>                        
                         </div>
 
                         <div class="separacion"></div>
                         <div class="separacion"></div>
-                        <a type="submit" class="btn btn-danger" style="color: white">Cancelar</a> 
-                        <a type="submit" class="btn btn-primary" style="color: white">Agregar forma de pago</a>
+                        <a type="submit" href="{% url 'formas_de_pago' %}" class="btn btn-danger" style="color: white">Cancelar</a> 
+                        <button type="submit" class="btn btn-primary" style="color: white">Agregar forma de pago</button>
                     </form>
             </div>
 
         <div class="col">
-            <img src="assets/img/Logo.png" alt="">
+            <img src="{% static 'assets/img/Logo.png' %}" alt="">
         </div>
     </div>
 </div>  

@@ -41,5 +41,6 @@ urlpatterns = [
     path('direcciones/', views.direcciones, name ="direcciones"),
     path('agregar_datos_bancarios/', views.agregar_datos_bancarios, name ="agregar_datos_bancarios"),
     path('insertar_datos_bancarios/', views.insertar_datos_bancarios, name ="insertar_datos_bancarios"),
+    path('eliminar_tarjeta/', views.eliminar_tarjeta, name ="eliminar_tarjeta"),
     
 ]

@@ -1,4 +1,5 @@
 from concurrent.futures.process import _ExceptionWithTraceback
+# from tkinter import NE
 from xmlrpc.client import Boolean
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -36,6 +37,7 @@ def buscar(request):
     
     try:
         usr = usuario.objects.get(email=email)
+        settings.USUARIO.id = usr.id
         settings.USUARIO.nombre = usr.nombre
         settings.USUARIO.apellido = usr.apellido
         settings.USUARIO.password = usr.password
@@ -233,7 +235,9 @@ def detalles_cuenta(request):
     return render(request, "detalles_cuenta.html", {"dia": dia, "mes": mes, "anio": anio})
 
 def formas_de_pago(request):
-    return render(request, "formas_de_pago.html")
+
+    lista_tarjetas = recuperar_tarjetas()
+    return render(request, "formas_de_pago.html", {"lista_tarjetas": lista_tarjetas})
 
 def direcciones(request):
     return render(request, "direcciones.html")
@@ -242,4 +246,53 @@ def agregar_datos_bancarios(request):
     return render(request, "agregar_datos_bancarios.html")
 
 def insertar_datos_bancarios(request):
+
+    tarjeta_guardada = False
+
+    numTarjeta = request.GET["num_tarjeta"]
+    mes_v = request.GET["mes_v"]
+    anio_v = request.GET["anio_v"]
+    cvv = request.GET["cvv"]
+    banco = request.GET["banco"]
+    id_usuario = settings.USUARIO.id
+
+    nueva_tarjeta = datos_bancarios(
+        num_tarjeta= numTarjeta,
+        mes_vencimiento = mes_v,
+        anio_vencimiento = anio_v,
+        cvv = cvv,
+        banco = banco,
+        id_usuario = id_usuario,
+        )
+
+    try:
+        nueva_tarjeta.save()
+        tarjeta_guardada = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"tarjeta_guardada": tarjeta_guardada, "lista_tarjetas": lista_tarjetas})
+
+    except Exception:
+        no_hay_tarjeta = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta, "lista_tarjetas": lista_tarjetas})
+
+def recuperar_tarjetas():
+    lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
+    return lista_tarjetas
+
+def eliminar_tarjeta(request):
+    eliminada = False
+
+    tarjeta_seleccionada = request.GET["tarjeta_seleccionada"]
+
+    try:
+        borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=tarjeta_seleccionada)
+        borrar_tarjeta.delete()
+        eliminado = True
+        lista_tarjetas = recuperar_tarjetas()
+        return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
+
+    except Exception:
+        no_hay_tarjeta = True
+        return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta})
     
