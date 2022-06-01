@@ -1,10 +1,12 @@
 from calendar import c
 from concurrent.futures.process import _ExceptionWithTraceback
+import re
 # from tkinter import NE
 from xmlrpc.client import Boolean
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Context
+from django.views.generic import View
 from registro.models import *
 from django.shortcuts import redirect
 from django.db.utils import IntegrityError
@@ -14,8 +16,84 @@ import datetime
 # from BackendDjango import settings
 from django.conf import settings
 #from django.template.loader import get_template
-from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+'''
+class VRegistro(View):
+    def get(self, request):
+        form=UserCreationForm
+        return render(request, 'login.html')
 
+    def post(self, request):
+        form=UserCreationForm(request.POST)
+        user = User.objects.create_user('myusername', 'myemail@crazymail.com', 'mypassword')
+'''
+class VRegistro(View):
+    def get(self, request):
+        return render(request, 'login.html')
+        
+    def post(self, request):
+        
+        try:
+            user = User.objects.create_user(username=request.POST["correo"] + "_user", password=request.POST["contrasenia"],
+                                        first_name=request.POST["nombre"],
+                                        last_name=request.POST["apellido"])
+            usr = usuario.objects.create(user=user, 
+                                                email_registro=request.POST["correo"],
+                                                telefono = request.POST["telefono"],
+            fecha_nac = request.POST["anio"] + "-" + request.POST["mes"] + "-" + request.POST["dia"])
+            usr.save()
+            insertado=True
+            login(request, user)
+            return redirect('inicio')
+        except Exception as e:
+            print(type(e))
+            print(e)
+            if type(e) == IntegrityError:
+                insertado=False
+                #print(type(e))
+                #print(e)
+                return render(request, "login.html", {"insertado":insertado})
+            else:
+                mensaje="Error inesperado"
+                return render(request, "index.html", {"mensaje_e":mensaje})
+
+def insertar(request):
+
+    insertado=False
+
+    usr = usuario(email = request.GET["correo"], 
+        password = request.GET["contrasenia"],
+        nombre = request.GET["nombre"],
+        apellido = request.GET["apellido"],
+        telefono = request.GET["telefono"],
+        fecha_nac = request.GET["anio"] + "-" + request.GET["mes"] + "-" + request.GET["dia"]
+    )
+
+    try:
+        usr.save()
+        settings.USUARIO.nombre = usr.nombre
+        settings.USUARIO.apellido = usr.apellido
+        settings.USUARIO.password = usr.password
+        settings.USUARIO.email = usr.email
+        settings.USUARIO.telefono = usr.telefono
+        settings.USUARIO.fecha_nac = datetime(request.GET["anio"], request.GET["mes"], request.GET["dia"])
+        settings.USUARIO.id = usr.id
+        
+        insertado=True
+        settings.LOGIN=True
+        return render(request, "index.html", {"insertado":insertado})
+
+    except Exception as e:
+        if type(e) == IntegrityError:
+            insertado=False
+            #print(type(e))
+            #print(e)
+            return render(request, "login.html", {"insertado":insertado})
+        else:
+            print(type(e))
+            print(e)
+            return render(request, "index.html")
 
 def login(request):
     return render(request, "login.html")
@@ -63,43 +141,6 @@ def buscar(request):
         acceso_denegado = True
         mensajeError="Parece que aún no tienes una cuenta con este correo electrónico."
         return render(request, "signin.html", {"mensaje":mensajeError, "acceso_denegado": acceso_denegado})
-
-def insertar(request):
-
-    insertado=False
-
-    usr = usuario(email = request.GET["correo"], 
-        password = request.GET["contrasenia"],
-        nombre = request.GET["nombre"],
-        apellido = request.GET["apellido"],
-        telefono = request.GET["telefono"],
-        fecha_nac = request.GET["anio"] + "-" + request.GET["mes"] + "-" + request.GET["dia"]
-    )
-
-    try:
-        usr.save()
-        settings.USUARIO.nombre = usr.nombre
-        settings.USUARIO.apellido = usr.apellido
-        settings.USUARIO.password = usr.password
-        settings.USUARIO.email = usr.email
-        settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = datetime(request.GET["anio"], request.GET["mes"], request.GET["dia"])
-        settings.USUARIO.id = usr.id
-        
-        insertado=True
-        settings.LOGIN=True
-        return render(request, "index.html", {"insertado":insertado})
-
-    except Exception as e:
-        if type(e) == IntegrityError:
-            insertado=False
-            #print(type(e))
-            #print(e)
-            return render(request, "login.html", {"insertado":insertado})
-        else:
-            print(type(e))
-            print(e)
-            return render(request, "index.html")
             
 def inicio(request):
     return render(request, "index.html")

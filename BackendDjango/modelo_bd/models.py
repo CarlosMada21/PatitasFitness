@@ -54,3 +54,4 @@ class ingreso(models.Model):
     fecha=models.DateField(null=True)    
     id_producto=models.IntegerField(null=False)
     id_usuario=models.IntegerField(null=False)
+# Create your models here.

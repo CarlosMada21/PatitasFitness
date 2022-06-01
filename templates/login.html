@@ -58,9 +58,9 @@
     {% endif %}
 
     <main class="form-login">
-        <!-- Inicio del formulario-->
+        <!-- Inicio del formulario, action="/insertar/"-->
 
-        <form action="/insertar/" method="GET"> {% csrf_token %}
+        <form method="post" action="registrarse"> {% csrf_token %}
             
             <a href="{% url 'inicio' %}">
                 <img class="mb-4" src="{% static 'assets/img/logo-sin-fondo.png' %}" alt="" width="200" height="187" link="{% static 'assets/index.html' %}">
