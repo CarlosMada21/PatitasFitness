@@ -18,6 +18,7 @@ from django.contrib import messages
 
 
 def login(request):
+    
     return render(request, "login.html")
 
 def signin(request):
@@ -38,22 +39,15 @@ def buscar(request):
     
     try:
         usr = usuario.objects.get(email=email)
-        settings.USUARIO.id = usr.id
-        settings.USUARIO.nombre = usr.nombre
-        settings.USUARIO.apellido = usr.apellido
-        settings.USUARIO.password = usr.password
-        settings.USUARIO.email = usr.email
-        settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = usr.fecha_nac
-        settings.USUARIO.inscripcion = usr.inscripcion
-        settings.USUARIO.mensualidad = usr.mensualidad
-        
-        print(settings.USUARIO.password)
-        print(request.GET["contrasenia"])
+        request.session['usr_id'] = usr.id
 
-        if((settings.USUARIO.password)==request.GET["contrasenia"]):
-            settings.LOGIN = True            
-            return render(request, "index.html")
+        if((usr.password)==request.GET["contrasenia"]):
+            
+            usr = usuario.objects.get(id=request.session.get('usr_id'))
+            usr.login = True
+            nombre=usr.nombre
+            login=usr.login
+            return render(request, "index.html", {'nombre': nombre, 'login':login})
         else:
             acceso_denegado = True
             mensajeError="Contraseña incorrecta, inténtalo de nuevo."
@@ -73,23 +67,15 @@ def insertar(request):
         nombre = request.GET["nombre"],
         apellido = request.GET["apellido"],
         telefono = request.GET["telefono"],
-        fecha_nac = request.GET["anio"] + "-" + request.GET["mes"] + "-" + request.GET["dia"]
+        fecha_nac = request.GET["anio"] + "-" + request.GET["mes"] + "-" + request.GET["dia"],
+        login=True
     )
 
     try:
         usr.save()
-        settings.USUARIO.nombre = usr.nombre
-        settings.USUARIO.apellido = usr.apellido
-        settings.USUARIO.password = usr.password
-        settings.USUARIO.email = usr.email
-        settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = datetime(request.GET["anio"], request.GET["mes"], request.GET["dia"])
-        settings.USUARIO.id = usr.id
+        request.session['usr_id'] = usr.id
         
-        insertado=True
-        settings.LOGIN=True
-        return render(request, "index.html", {"insertado":insertado})
-
+        return redirect('inicio')
     except Exception as e:
         if type(e) == IntegrityError:
             insertado=False
@@ -102,31 +88,57 @@ def insertar(request):
             return render(request, "index.html")
             
 def inicio(request):
-    return render(request, "index.html")
-
+    try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        nombre=usr.nombre
+        login=usr.login
+        return render(request, "index.html", {'nombre': nombre, 'login':login})
+    
+    except Exception:
+        return render(request, 'index.html', {"login":False})
+    
 def logout(request):
-    reset_globals()
-    return redirect('inicio')
+    try:
+        request.session['usr_id']=0
+        return render(request, 'index.html', {"login": False})
+    except KeyError:
+        print('No pudimos cerrar la sesión')
+        return render(request, 'index.html', {"login": False})
 
 def configuracion(request):
-    return render(request, "configuracion.html")
+    try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        nombre=usr.nombre
+        login=usr.login
+        return render(request, "configuracion.html", {'nombre': nombre, 'login':login})
+    
+    except Exception:
+        return render(request, 'index.html', {"login":False})
 
 def membresias(request):
     return render(request, "membresias.html")
 
 def citas(request):
-    return render(request, "citas.html")
+    
+    try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        nombre=usr.nombre
+        login=usr.login
+        return render(request, "citas.html", {'nombre': nombre, 'login':login})
+    
+    except Exception:
+        return render(request, 'index.html', {"login":False})
 
 def eliminar(request):
     eliminado=False
     mensaje = ""
     
     try:
-        borrar_usr = usuario.objects.get(email=settings.USUARIO.email)
+        borrar_usr = usuario.objects.get(id=request.session.get('usr_id'))
         borrar_usr.delete()
         eliminado = True
-        reset_globals()
-        return render(request, "index.html", {"eliminado": eliminado})
+        request.session['usr_id'] = 0
+        return render(request, 'index.html', {"login": False})
     except Exception as e:
         if type(e) == usuario.DoesNotExist:
             mensaje="Ha ocurrido un problema al obtener tu usuario. Intenta más tarde."
@@ -138,8 +150,15 @@ def eliminar(request):
             return render(request, "configuracion.html", {"eliminado": eliminado, "mensaje":mensaje})
         
 def catalogo(request):
-    return render(request, "catalogo.html")
-
+    try:
+        if request.session.get('usr_id') != 0:
+            usr = usuario.objects.get(id=request.session.get('usr_id'))
+            return render(request, "catalogo.html", {"login":True, "nombre":usr.nombre})
+        else:
+            return render(request, "catalogo.html", {"login":False})
+    except Exception:
+        return render(request, "index.html", {"login":False})
+     
 def insertar_cita(request):
     fecha_hora=request.POST["fecha_hora"]
     fecha=fecha_hora[6]+fecha_hora[7]+fecha_hora[8]+fecha_hora[9]+"-"+fecha_hora[0]+fecha_hora[1]+"-"+fecha_hora[3]+fecha_hora[4]
@@ -148,7 +167,7 @@ def insertar_cita(request):
     d = datetime.time(int(fecha_hora[11] + fecha_hora[12]), int(fecha_hora[14]+fecha_hora[15]), int(fecha_hora[17]+fecha_hora[18]))
     
     servicio=request.POST["servicio"]
-    id_usuario=settings.USUARIO.id
+    id_usuario=request.session.get('usr_id')
     cita_agendada=False
     cita_no_agendada=False
     
@@ -186,38 +205,44 @@ def editar_usuario(request):
     # mes = fecha[5:6]
     # anio = fecha[0:3]
     # print(dia + mes + anio)
-    anio = settings.USUARIO.fecha_nac.strftime("%Y")
-    mes = settings.USUARIO.fecha_nac.strftime("%m")
-    dia = settings.USUARIO.fecha_nac.strftime("%d")
-    return render(request, "editar_usuario.html", {"dia": dia, "mes": mes, "anio": anio})
+    
+    try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        anio = usr.fecha_nac.strftime("%Y")
+        mes = usr.fecha_nac.strftime("%m")
+        dia = usr.fecha_nac.strftime("%d")
+        nombre=usr.nombre
+        apellido=usr.apellido
+        password=usr.password
+        telefono=usr.telefono
+        login=usr.login
+        return render(request, "editar_usuario.html", {"dia": dia, "mes": mes, "anio": anio, "nombre":nombre, "apellido":apellido, "telefono":telefono, "password":password, "login":login})
+    
+    except Exception:
+        
+        return render(request, 'index.html', {"login": False})
         
 def editar(request):
 
-    email = settings.USUARIO.email
     mensaje = ""
     cambiado = False
-    usr = usuario.objects.get(email=email)
-    
-    usr.nombre = request.GET["nombre_e"]
-    usr.apellido = request.GET["apellido_e"]
-    usr.fecha_nac = request.GET["anio_e"] + "-" + request.GET["mes_e"] + "-" + request.GET["dia_e"]
-    usr.telefono = request.GET["telefono_e"]
-    usr.password = request.GET["password_e"]
 
     try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        
+        usr.nombre = request.GET["nombre_e"]
+        usr.apellido = request.GET["apellido_e"]
+        usr.fecha_nac = request.GET["anio_e"] + "-" + request.GET["mes_e"] + "-" + request.GET["dia_e"]
+        usr.telefono = request.GET["telefono_e"]
+        usr.password = request.GET["password_e"]
         
         usr.save()
-        settings.USUARIO.nombre = usr.nombre
-        settings.USUARIO.apellido = usr.apellido
-        settings.USUARIO.password = usr.password
-        settings.USUARIO.email = usr.email
-        settings.USUARIO.telefono = usr.telefono
-        settings.USUARIO.fecha_nac = datetime.strptime(usr.fecha_nac, '%Y-%m-%d')
+        
         # date(request.GET["anio_e"], request.GET["mes_e"], request.GET["dia_e"])
 
         mensaje = "Los datos han sido cambiado con éxito"
         cambiado = True
-        return render(request, "index.html", {"mensaje_e": mensaje, "cambiado": cambiado})
+        return render(request, "index.html", {"mensaje_e": mensaje, "cambiado": cambiado, "login":True})
 
     except Exception as e:
         if type(e) == IntegrityError:
@@ -225,24 +250,48 @@ def editar(request):
             mensaje = "Ocurrió un problema, vuelve a intentarlo"
             return render(request, "editar_usuario.html", {"mensaje_e": mensaje, "cambiado": cambiado})
         else:
-            return render(request, "index.html")
+            return render(request, "index.html", {"login": False})
 
 def detalles_cuenta(request):
     # fecha =  settings.USUARIO.fecha_nac.strftime("%Y-%m-%d")
-
+    '''
     anio = settings.USUARIO.fecha_nac.strftime("%Y")
     mes = settings.USUARIO.fecha_nac.strftime("%m")
     dia = settings.USUARIO.fecha_nac.strftime("%d")
-    return render(request, "detalles_cuenta.html", {"dia": dia, "mes": mes, "anio": anio})
+    id=request.session.get('usr_id')
+    nombre=request.session.get('usr_nombre')
+    apellido=request.session.get('usr_apellido')
+    email=request.session.get('usr_email')
+    login=request.session.get('usr_login')
+    password=request.session.get('usr_password')
+    telefono=request.session.get('usr_tel')
+    dia_nac=request.session.get('usr_dia_nac')
+    mes_nac=request.session.get('usr_mes_nac')
+    anio_nac=request.session.get('usr_anio_nac')'''
+    try:
+        usr = usuario.objects.get(id=request.session.get('usr_id'))
+        anio = usr.fecha_nac.strftime("%Y")
+        mes = usr.fecha_nac.strftime("%m")
+        dia = usr.fecha_nac.strftime("%d")
+        nombre=usr.nombre
+        apellido=usr.apellido
+        email=usr.email
+        telefono=usr.telefono
+        login=usr.login
+        return render(request, "detalles_cuenta.html", {"dia": dia, "mes": mes, "anio": anio, "nombre":nombre, "apellido":apellido, "telefono":telefono, "email":email, "login":login})
 
+    except Exception:
+        
+        return render(request, 'index.html', {"login": False})
+    
 def formas_de_pago(request):
 
-    lista_tarjetas = recuperar_tarjetas()
+    lista_tarjetas = recuperar_tarjetas(request)
     return render(request, "formas_de_pago.html", {"lista_tarjetas": lista_tarjetas})
 
 def direcciones(request):
 
-    lista_direcciones = recuperar_direcciones()
+    lista_direcciones = recuperar_direcciones(request)
     return render(request, "direcciones.html", {"lista_direcciones": lista_direcciones})
 
 def agregar_datos_bancarios(request):
@@ -257,7 +306,7 @@ def insertar_datos_bancarios(request):
     anio_v = request.GET["anio_v"]
     cvv = request.GET["cvv"]
     banco = request.GET["banco"]
-    id_usuario = settings.USUARIO.id
+    id_usuario = request.session.get('usr_id')
 
     nueva_tarjeta = datos_bancarios(
         num_tarjeta= numTarjeta,
@@ -271,20 +320,20 @@ def insertar_datos_bancarios(request):
     try:
         nueva_tarjeta.save()
         tarjeta_guardada = True
-        lista_tarjetas = recuperar_tarjetas()
+        lista_tarjetas = recuperar_tarjetas(request)
         return render(request, "formas_de_pago.html", {"tarjeta_guardada": tarjeta_guardada, "lista_tarjetas": lista_tarjetas})
 
     except Exception:
         no_hay_tarjeta = True
-        lista_tarjetas = recuperar_tarjetas()
+        lista_tarjetas = recuperar_tarjetas(request)
         return render(request, "formas_de_pago.html", {"no_hay_tarjeta": no_hay_tarjeta, "lista_tarjetas": lista_tarjetas})
 
-def recuperar_tarjetas():
-    lista_tarjetas = datos_bancarios.objects.filter(id_usuario = settings.USUARIO.id)
+def recuperar_tarjetas(request):
+    lista_tarjetas = datos_bancarios.objects.filter(id_usuario = request.session.get('usr_id'))
     return lista_tarjetas
 
-def recuperar_citas():
-    lista_citas = cita.objects.filter(id_usuario = settings.USUARIO.id)
+def recuperar_citas(request):
+    lista_citas = cita.objects.filter(id_usuario = request.session.get('usr_id'))
     return lista_citas
 
 def eliminar_tarjeta(request):
@@ -296,7 +345,7 @@ def eliminar_tarjeta(request):
         borrar_tarjeta = datos_bancarios.objects.get(num_tarjeta=tarjeta_seleccionada)
         borrar_tarjeta.delete()
         eliminada = True
-        lista_tarjetas = recuperar_tarjetas()
+        lista_tarjetas = recuperar_tarjetas(request)
         return render(request, "formas_de_pago.html", {"eliminada": eliminada, "lista_tarjetas": lista_tarjetas})
 
     except Exception:
@@ -318,7 +367,7 @@ def insertar_direccion(request):
     cp = request.GET["cp"]
     entre_calles = request.GET["entre_calles"]
     referencia = request.GET["referencia"]
-    id_usuario = settings.USUARIO.id
+    id_usuario = request.session.get('usr_id')
 
     nueva_direccion= direccion(
         colonia = colonia,
@@ -335,16 +384,16 @@ def insertar_direccion(request):
     try:
         nueva_direccion.save()
         direccion_guardada = True
-        lista_direcciones = recuperar_direcciones()
+        lista_direcciones = recuperar_direcciones(request)
         return render(request, "direcciones.html", {"direccion_guardada": direccion_guardada, "lista_direcciones": lista_direcciones})
 
     except Exception:
         no_hay_direccion = True
-        lista_direcciones = recuperar_direcciones()
+        lista_direcciones = recuperar_direcciones(request)
         return render(request, "direcciones.html", {"no_hay_direccion": no_hay_direccion, "lista_direcciones": lista_direcciones})
 
-def recuperar_direcciones():
-    lista_direcciones = direccion.objects.filter(id_usuario = settings.USUARIO.id)
+def recuperar_direcciones(request):
+    lista_direcciones = direccion.objects.filter(id_usuario = request.session.get('usr_id'))
     return lista_direcciones
 
 def eliminar_direccion(request):
@@ -356,7 +405,7 @@ def eliminar_direccion(request):
         borrar_direccion = direccion.objects.get(id=direccion_seleccionada)
         borrar_direccion.delete()
         eliminada = True
-        lista_direcciones = recuperar_direcciones()
+        lista_direcciones = recuperar_direcciones(request)
         return render(request, "direcciones.html", {"eliminada": eliminada, "lista_direcciones": lista_direcciones})
 
     except Exception:
@@ -364,5 +413,5 @@ def eliminar_direccion(request):
         return render(request, "direccione.html", {"no_hay_direccion": no_hay_direccion})
 
 def citas_registradas(request):
-    lista_citas=recuperar_citas()
+    lista_citas=recuperar_citas(request)
     return render(request, "citas_registradas.html", {"lista_citas":lista_citas})

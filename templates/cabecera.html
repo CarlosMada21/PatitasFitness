@@ -63,7 +63,7 @@
                     <a class="nav-link active" aria-current="page" href="#conocenos">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#ubicacion">Ubicación</a>
+                    <a class="nav-link active" aria-current="page" href="#ubicacion">Ubicacion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#servicios">Nuestros Servicios</a>
@@ -76,7 +76,7 @@
                 </li>
                 </ul>
 
-                {% if LOGIN == False %}
+                {% if login == False %}
 
                     <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -95,7 +95,7 @@
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
                                 <img src="{% static 'assets/img/user.png' %}" alt="" width="40" height="40" >
-                                <a style="color: white"> {{USUARIO.nombre}}</a>
+                                <a style="color: white"> {{ nombre }}</a>
                             </li>
                             <li>
                                 <p style= "color: #0F2C67" >\t\t</p>

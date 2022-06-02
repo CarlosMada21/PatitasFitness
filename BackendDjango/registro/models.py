@@ -15,6 +15,7 @@ class usuario(models.Model):
     fecha_nac=models.DateField(null=True)
     mensualidad=models.BooleanField(null=True, default='False')
     inscripcion=models.BooleanField(null=True, default='False')
+    login=models.BooleanField(null=True, default='False')
     
 class producto(models.Model):
     nombre=models.CharField(max_length=255, null=True)
